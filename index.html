@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko" >
+<head>
+    <title>UI modalDialog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://www.mins01.com/favicon.ico"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="/js/ForGoogle.js"></script>
+    <!-- google analytics -->
+    <script>if(window.ForGoogle){ ForGoogle.analytics() }else{ console.log("failure : ForGoogle.analytics()");}</script>
+    
+
+    <!-- jquery 관련 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+    <!-- 부트스트랩 5.3.x -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    <!-- meta og -->
+    
+    <meta property="og:title" content="UI modalDialog">
+    <meta property="og:description" content="UI modalDialog">
+    <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
+    <meta property="og:image:width" content="190">
+    <meta property="og:image:height" content="70" />
+    <meta property="og:site_name" content="UI modalDialog" />
+    <meta property="og:type" content="website">
+    
+    <!-- //meta og -->
+    <script src="ModalDialog.js"></script>
+    <script>
+        window.addEventListener('load',(event)=>{
+            window.md = new ModalDialog(document.querySelector('.modal-dialog-container'));
+            // md.alert('x').then(()=>{alert('x 확인 클릭')});
+            // md.alert('y').then(()=>{alert('y 확인 클릭')});
+            // md.alert('z').then(()=>{alert('z 확인 클릭')});
+        })
+    </script>
+    <script>
+        async function testAlert(msg=''){
+            return new Promise((resolve,reject)=>{
+                console.log(msg?.toString());
+                // document.querySelector('#btn-alert-confirm').onclick = (event)=>{ console.log('xxxx'); resolve(); }
+                document.querySelector('#btn-alert-confirm').addEventListener('click',(event)=>{ console.log('xxxx'); resolve(); },{once:true})
+
+            });
+        }
+        function testConfirm(msg=''){
+            return new Promise((resolve,reject)=>{
+                console.log(msg?.toString());
+                document.querySelector('#btn-confirm-confirm').onclick = (event)=>{ resolve(true); }
+                document.querySelector('#btn-confirm-cancel').onclick = (event)=>{ resolve(false); }
+            });
+        }
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>UI modalDialog</h1>
+        <div>
+            <h2>alert([message]);</h2>
+            <div>
+                <button type="button" class="btn btn-info" onclick="testAlert('테스트 testConfirm').then((r)=>{console.log('result',r)})">테스트</button>
+                <button id="btn-alert-confirm" type="button" class="btn btn-primary">확인</button>
+            </div>
+        </div>
+        <div>
+            <h2>confirm([message]);</h2>
+            <div>.then((result:bool)=>{ ... });</div>
+            <div>
+                <button type="button" class="btn btn-info" onclick="testConfirm('테스트 testConfirm').then((r)=>{console.log('result',r)})">테스트</button>
+                <button id="btn-confirm-confirm" type="button" class="btn btn-primary">확인</button>
+                <button id="btn-confirm-cancel" type="button" class="btn btn-danger">취소</button>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h2>alert([message]);</h2>
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.alert().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                
+            </div>
+        </div>
+        <div>
+            <h2>confirm([message]);</h2>
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.confirm().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+            </div>
+        </div>
+        <div>
+            <h2>prompt([message],[defaultValue]);</h2>
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.prompt().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="modal-dialog-container">
+        <dialog class="modal-dialog-alert">
+            <div class="modal-dialog-message"></div>
+            <button class="modal-dialog-btn-confirm">확인</button>
+        </dialog>
+        <dialog class="modal-dialog-confirm">
+            <div class="modal-dialog-message"></div>
+            <button class="modal-dialog-btn-confirm">확인</button>
+            <button class="modal-dialog-btn-cancel">취소</button>
+        </dialog>
+        <dialog class="modal-dialog-prompt">
+            <div class="modal-dialog-message"></div>
+            <div>
+                <input class="modal-dialog-input" type="text" name="input">
+            </div>
+            <button class="modal-dialog-btn-confirm">확인</button>
+            <button class="modal-dialog-btn-cancel">취소</button>
+        </dialog>
+        <div class="modal-dialog-prompt"></div>
+    </div>
+</body>
+</html>
