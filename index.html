@@ -89,6 +89,14 @@
             <div>
                 <button type="button" class="btn btn-info" onclick="md.alert().then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" onclick="md.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
+                        md.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
+                        md.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
                 
             </div>
         </div>
@@ -97,6 +105,14 @@
             <div>
                 <button type="button" class="btn btn-info" onclick="md.confirm().then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" onclick="md.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
+                        md.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
+                        md.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
             </div>
         </div>
         <div>
@@ -105,6 +121,13 @@
                 <button type="button" class="btn btn-info" onclick="md.prompt().then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" onclick="md.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" onclick="md.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
+                        md.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
+                        md.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
             </div>
         </div>
 
@@ -112,21 +135,27 @@
     
     <div class="modal-dialog-container">
         <dialog class="modal-dialog-alert">
-            <div class="modal-dialog-message"></div>
-            <button class="modal-dialog-btn-confirm">확인</button>
+            <form action="" method="dialog">
+                <div class="modal-dialog-message"></div>
+                <button class="modal-dialog-btn-confirm">확인</button>
+            </form>
         </dialog>
         <dialog class="modal-dialog-confirm">
-            <div class="modal-dialog-message"></div>
-            <button class="modal-dialog-btn-confirm">확인</button>
-            <button class="modal-dialog-btn-cancel">취소</button>
+            <form action="" method="dialog">
+                <div class="modal-dialog-message"></div>
+                <button class="modal-dialog-btn-confirm" value="true">확인</button>
+                <button class="modal-dialog-btn-cancel" value="false">취소</button>
+            </form>
         </dialog>
         <dialog class="modal-dialog-prompt">
-            <div class="modal-dialog-message"></div>
-            <div>
-                <input class="modal-dialog-input" type="text" name="input">
-            </div>
-            <button class="modal-dialog-btn-confirm">확인</button>
-            <button class="modal-dialog-btn-cancel">취소</button>
+            <form action="" method="dialog">
+                <div class="modal-dialog-message"></div>
+                <div>
+                    <input class="modal-dialog-input" type="text" name="input">
+                </div>
+                <button class="modal-dialog-btn-confirm" value="true">확인</button>
+                <button class="modal-dialog-btn-cancel" value="false">취소</button>
+            </form>
         </dialog>
         <div class="modal-dialog-prompt"></div>
     </div>
