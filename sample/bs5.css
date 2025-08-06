@@ -16,7 +16,9 @@
 }
 .exclusive-modal-container-bs5 .card{
     min-width: 200px;
-    max-height: 80vh;
+    max-height: 50svh;
+    max-height: 50vh;
+    max-width: 80svw;
     max-width: 80vw;
 }
 
