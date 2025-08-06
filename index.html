@@ -65,25 +65,18 @@
     
 </head>
 <body>
-    <div class="container">
+    <div class="container py-1">
         <h1>UI modalDialog</h1>
-        <div>
-            <h2>alert([message]);</h2>
-            <div>
-                <button type="button" class="btn btn-info" onclick="testAlert('테스트 testConfirm').then((r)=>{console.log('result',r)})">테스트</button>
-                <button id="btn-alert-confirm" type="button" class="btn btn-primary">확인</button>
-            </div>
-        </div>
-        <div>
-            <h2>confirm([message]);</h2>
-            <div>.then((result:bool)=>{ ... });</div>
-            <div>
-                <button type="button" class="btn btn-info" onclick="testConfirm('테스트 testConfirm').then((r)=>{console.log('result',r)})">테스트</button>
-                <button id="btn-confirm-confirm" type="button" class="btn btn-primary">확인</button>
-                <button id="btn-confirm-cancel" type="button" class="btn btn-danger">취소</button>
-            </div>
-        </div>
-        <hr>
+        <ul class="list-group my-1">
+            <li class="list-group-item">dialog 태그를 사용하여 modal(뒷 부분의 사용할 수 없게 함) 을 구성한다.</li>
+            <li class="list-group-item">alert, confirm, prompt 를 기본 제공한다</li>            
+        </ul>
+        <ul class="list-group my-1">
+            <li class="list-group-item active">form의 유효성 검사 이슈</li>
+            <li class="list-group-item">HTML 스펙상	: method="dialog"은 constraint validation을 트리거하지 않도록 명시됨 ( https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#form-submission-algorithm )</li>
+            <li class="list-group-item ">실제 브라우저 (Chrome 등) : 	dialog.showModal() 상태에서 button type="submit" 클릭 시 validation 수행함 </li>
+        </ul>
+        
         <div>
             <h2>alert([message]);</h2>
             <div>
@@ -97,7 +90,6 @@
                         md.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
-                
             </div>
         </div>
         <div>
@@ -130,34 +122,167 @@
                     >다중</button>
             </div>
         </div>
+        <div>
+            <h2>custom1();</h2>
+            <h5>form method="post" : form에서 자동으로 validate 처리.</h5>
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.custom1().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.custom1('테스트 custom1','기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.custom1(`테스트 custom1 X`).then((r)=>{console.log('result X',r)})
+                        md.custom1(`테스트 custom1 Y`).then((r)=>{console.log('result Y',r)})
+                        md.custom1(`테스트 custom1 Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
+        <div>
+            <h2>custom2();</h2>
+            <h5>form method="dialog" + form.reportValidity() : 버튼에서 수동으로 reportValidity 호출에서 처리</h5>
+
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.custom2().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.custom2('테스트 custom2','기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
+                        md.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
+                        md.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
+        <div>
+            <h2>showModals['custom-3']();</h2>
+            <h5>form method="dialog" + form.reportValidity() : 버튼에서 수동으로 reportValidity 호출에서 처리</h5>
+
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.showModals['custom-3']().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.showModals['custom-3'](`테스트 showModals['custom-3']`,'기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.showModals['custom-3'](`테스트 showModals['custom-3'] X`).then((r)=>{console.log('result X',r)})
+                        md.showModals['custom-3'](`테스트 showModals['custom-3'] Y`).then((r)=>{console.log('result Y',r)})
+                        md.showModals['custom-3'](`테스트 showModals['custom-3'] Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
+        <div>
+            <h2>custom4();</h2>
+            <h5>form method="dialog" + form.onsubmit : html 스펙에선 안되는데 대부분의 브라우저가 지원한다.</h5>
+
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.custom2().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.custom2('테스트 custom4','기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
+                        md.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
+                        md.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
 
     </div>
     
     <div class="modal-dialog-container">
-        <dialog class="modal-dialog-alert">
-            <form action="" method="dialog">
+        <dialog class="modal-dialog-alert" data-dialog-id="alert">
+            <form action="" method="dialog" >
+                <h1>alert</h1>
                 <div class="modal-dialog-message"></div>
-                <button class="modal-dialog-btn-confirm">확인</button>
+                <button type="submit" class="modal-dialog-btn-confirm" >확인</button>
             </form>
         </dialog>
-        <dialog class="modal-dialog-confirm">
+
+        <dialog class="modal-dialog-confirm" data-dialog-id="confirm">
             <form action="" method="dialog">
+                <h1>confirm</h1>
                 <div class="modal-dialog-message"></div>
-                <button class="modal-dialog-btn-confirm" value="true">확인</button>
-                <button class="modal-dialog-btn-cancel" value="false">취소</button>
+                <button type="submit" class="modal-dialog-btn-confirm" value="true" onclick="ModalDialog.close(this,true)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel" value="false" onclick="ModalDialog.close(this,false)">취소</button>
             </form>
         </dialog>
-        <dialog class="modal-dialog-prompt">
+        <dialog class="modal-dialog-prompt" data-dialog-id="prompt">
             <form action="" method="dialog">
+                <h1>prompt</h1>
                 <div class="modal-dialog-message"></div>
                 <div>
                     <input class="modal-dialog-input" type="text" name="input">
                 </div>
-                <button class="modal-dialog-btn-confirm" value="true">확인</button>
-                <button class="modal-dialog-btn-cancel" value="false">취소</button>
+                <button type="submit" class="modal-dialog-btn-confirm"  onclick="ModalDialog.close(this,this.form.input.value)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
             </form>
         </dialog>
-        <div class="modal-dialog-prompt"></div>
+
+        <!-- 이하 커스텀용 -->
+        <dialog class="modal-dialog-prompt" data-dialog-id="custom1">
+            <form action="" method="post" onsubmit="ModalDialog.close(this,this.input.value);return false;">
+                <h1>custom1</h1>
+                <div class="modal-dialog-message">##</div>
+                <div class="modal-dialog-static-message">2~10글자를 입력해주세요.</div>
+                <div>
+                    <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
+                </div>
+                <button type="submit" class="modal-dialog-btn-confirm"  >확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+            </form>
+        </dialog>
+
+        <dialog class="modal-dialog-prompt" data-dialog-id="custom2">
+            <form action="" method="dialog">
+                <h1>custom2</h1>
+                <div class="modal-dialog-message">##</div>
+                <div class="modal-dialog-static-message">2~10글자를 입력해주세요.</div>
+                <div>
+                    <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
+                </div>
+                <button class="modal-dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ModalDialog.close(this,this.form.input.value) }" >확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+            </form>
+        </dialog>
+        <dialog class="modal-dialog-prompt" data-dialog-id="custom-3">
+            <form action="" method="dialog" onsubmit="alert('xxx')">
+                <h1>custom-3</h1>
+                <div class="modal-dialog-message">##</div>
+                <div class="modal-dialog-static-message">2~10글자를 입력해주세요.</div>
+                <div>
+                    <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
+                </div>
+                <button type="submit" class="modal-dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ModalDialog.close(this,this.form.input.value) }" >확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+            </form>
+        </dialog>
+        <dialog class="modal-dialog-prompt" data-dialog-id="custom4" onsubmit="ModalDialog.close(this,this.form.input.value);return false;">
+            <form action="" method="dialog">
+                <h1>custom4</h1>
+                <div class="modal-dialog-message">##</div>
+                <div class="modal-dialog-static-message">2~10글자를 입력해주세요.</div>
+                <div>
+                    <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
+                </div>
+                <button class="modal-dialog-btn-confirm" >확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+            </form>
+        </dialog>
+
+        <!-- 이하 실패 테스트용 -->
+        <dialog class="modal-dialog-alert" data-dialog-id="alert">
+            <form action="" method="dialog" >
+                <h1>alert</h1>
+                <div class="modal-dialog-message">중복 등록 실패 테스트</div>
+                <button class="modal-dialog-btn-confirm" >확인</button>
+            </form>
+        </dialog>
+        <dialog class="modal-dialog-alert" data-dialog-id="1-alert">
+            <form action="" method="dialog" >
+                <h1>1-alert</h1>
+                <div class="modal-dialog-message">직접 호출 함수 등록 실패 테스트</div>
+                <button class="modal-dialog-btn-confirm" >확인</button>
+            </form>
+        </dialog>
     </div>
 </body>
 </html>
