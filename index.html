@@ -39,7 +39,7 @@
     <script src="ExclusiveDialogModal.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.edm = new ExclusiveDialogModal(document.querySelector('.exclusive-modal-container'));
+            window.edm = new ExclusiveDialogModal(document.querySelector('.exclusive-dialog-modal-container'));
         })
     </script>    
 </head>
@@ -173,12 +173,12 @@
 
     </div>
     
-    <div class="exclusive-modal-container">
+    <div class="exclusive-dialog-modal-container">
         <dialog class="dialog-alert" data-dialog-id="alert">
             <form action="" method="dialog" >
                 <h1>alert</h1>
                 <div class="dialog-message"></div>
-                <button type="submit" class="dialog-btn-confirm" >확인</button>
+                <button type="submit" >확인</button>
             </form>
         </dialog>
 
@@ -186,8 +186,8 @@
             <form action="" method="dialog">
                 <h1>confirm</h1>
                 <div class="dialog-message"></div>
-                <button type="submit" class="dialog-btn-confirm" value="true" onclick="ExclusiveDialogModal.close(this,true)">확인</button>
-                <button type="button" class="dialog-btn-cancel" value="false" onclick="ExclusiveDialogModal.close(this,false)">취소</button>
+                <button type="submit" value="true" onclick="ExclusiveDialogModal.close(this,true)">확인</button>
+                <button type="button" value="false" onclick="ExclusiveDialogModal.close(this,false)">취소</button>
             </form>
         </dialog>
         <dialog class="dialog-prompt" data-dialog-id="prompt">
@@ -197,8 +197,8 @@
                 <div>
                     <input class="dialog-input" type="text" name="input">
                 </div>
-                <button type="submit" class="dialog-btn-confirm"  onclick="ExclusiveDialogModal.close(this,this.form.input.value)">확인</button>
-                <button type="button" class="dialog-btn-cancel"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
+                <button type="submit"  onclick="ExclusiveDialogModal.close(this,this.form.input.value)">확인</button>
+                <button type="button"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
             </form>
         </dialog>
 
@@ -211,8 +211,8 @@
                 <div>
                     <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
-                <button type="submit" class="dialog-btn-confirm"  >확인</button>
-                <button type="button" class="dialog-btn-cancel"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
+                <button type="submit"  >확인</button>
+                <button type="button"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
             </form>
         </dialog>
 
@@ -224,8 +224,8 @@
                 <div>
                     <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
-                <button class="dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ExclusiveDialogModal.close(this,this.form.input.value) }" >확인</button>
-                <button type="button" class="dialog-btn-cancel"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
+                <button onclick="if(this.form.reportValidity()){ ExclusiveDialogModal.close(this,this.form.input.value) }" >확인</button>
+                <button type="button"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
             </form>
         </dialog>
         <dialog class="dialog-prompt" data-dialog-id="custom-3">
@@ -236,8 +236,8 @@
                 <div>
                     <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
-                <button type="submit" class="dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ExclusiveDialogModal.close(this,this.form.input.value) }" >확인</button>
-                <button type="button" class="dialog-btn-cancel"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
+                <button type="submit" onclick="if(this.form.reportValidity()){ ExclusiveDialogModal.close(this,this.form.input.value) }" >확인</button>
+                <button type="button"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
             </form>
         </dialog>
         <dialog class="dialog-prompt" data-dialog-id="custom4" onsubmit="ExclusiveDialogModal.close(this,this.form.input.value);return false;">
@@ -248,8 +248,8 @@
                 <div>
                     <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
-                <button class="dialog-btn-confirm" >확인</button>
-                <button type="button" class="dialog-btn-cancel"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
+                <button >확인</button>
+                <button type="button"  onclick="ExclusiveDialogModal.close(this,null)">취소</button>
             </form>
         </dialog>
 
@@ -258,14 +258,14 @@
             <form action="" method="dialog" >
                 <h1>alert</h1>
                 <div class="dialog-message">중복 등록 실패 테스트</div>
-                <button class="dialog-btn-confirm" >확인</button>
+                <button >확인</button>
             </form>
         </dialog>
         <dialog class="dialog-alert" data-dialog-id="1-alert">
             <form action="" method="dialog" >
                 <h1>1-alert</h1>
                 <div class="dialog-message">직접 호출 함수 등록 실패 테스트</div>
-                <button class="dialog-btn-confirm" >확인</button>
+                <button >확인</button>
             </form>
         </dialog>
     </div>

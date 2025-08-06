@@ -45,7 +45,8 @@
     <script>
         window.addEventListener('load',(event)=>{
             window.edm1 = new ExclusiveDialogModal(document.querySelector('.sample-1'));
-            window.edm2 = new ExclusiveDialogModal(document.querySelector('.sample-2'));
+            window.edm2 = new ExclusiveDialogModal();
+            window.edm2.attachAll(document.querySelector('.sample-2'));
         })
     </script>    
 </head>

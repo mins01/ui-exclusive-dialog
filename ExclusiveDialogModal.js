@@ -1,23 +1,24 @@
 class ExclusiveDialogModal{
     
-    container = null;
     queue = null;
     dialogs = null;
-    removeHandlers = null;
     running = false;
     _resolve = null;
     _reject = null;
     showModals = null
-    constructor(container){
-        this.container = container;
+    
+    constructor(container=null){
+        
         this.dialogs = {}
         this.showModals = {} // dialog 들의 showModal 동작용
         this.queue = [];
         
-        this.container.querySelectorAll('dialog[data-dialog-id]').forEach(dialog => {
+        if(container) this.attachAll(container);        
+    }
+    attachAll(container){
+        container.querySelectorAll('dialog[data-dialog-id]').forEach(dialog => {
             return this.attach(dialog)
         });
-        
     }
     attach(dialog){
         const dialogId = dialog.dataset.dialogId;
