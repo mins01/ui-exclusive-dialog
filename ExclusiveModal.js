@@ -49,7 +49,7 @@ class ExclusiveModal{
         // console.log('showAlert',[...arguments]);
         this._resolve = resolve
         this._reject = reject
-        const messageBox = dialog.querySelector('.modal-dialog-message');
+        const messageBox = dialog.querySelector('.dialog-message');
         if(messageBox){ messageBox.textContent = message; }
         const input = dialog.querySelector('input, select, textarea');
         if(input){

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" >
 <head>
-    <title>UI modalDialog - bootstrap 5</title>
+    <title>UI exclusiveModal - bs5</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -27,59 +27,36 @@
     
     <!-- meta og -->
     
-    <meta property="og:title" content="UI modalDialog - bootstrap 5">
-    <meta property="og:description" content="UI modalDialog - bootstrap 5">
+    <meta property="og:title" content="UI exclusiveModal - bs5">
+    <meta property="og:description" content="UI exclusiveModal - bs5">
     <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
     <meta property="og:image:width" content="190">
     <meta property="og:image:height" content="70" />
-    <meta property="og:site_name" content="UI modalDialog" />
+    <meta property="og:site_name" content="UI exclusiveModal - bs5" />
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
-
-    <style>
-        .modal-dialog{
-            padding: 2rem;
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            color: #333;
-            font-family: sans-serif;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transform: scale(1);
-        }
-        
-        dialog[open] {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
-            backdrop-filter: blur(2px);    /* 흐림 효과 (지원 브라우저 한정) */
-        }
-    </style>
-
-    <script src="ModalDialog.js"></script>
+    <script src="ExclusiveModal.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.md = new ModalDialog(document.querySelector('.modal-dialog-container'));
+            window.md = new ExclusiveModal(document.querySelector('.modal-dialog-container'));
         })
-    </script>
+    </script>    
 </head>
 <body>
     <div class="container py-1">
-        <h1>UI modalDialog - bootstrap 5</h1>
+        <h1>UI exclusiveModal - bs5</h1>
         <ul class="list-group my-1">
-            <li class="list-group-item">부트스트랩 5 적용 한 예제</li>
+            <li class="list-group-item">부트스트랩 5 적용 샘플</li>
+            <li class="list-group-item">dialog 태그를 사용하여 modal(뒷 부분을 접근할 수 없는 상태)을 구성한다.</li>
             <li class="list-group-item">alert, confirm, prompt 를 에뮬레이션 하는 것이 기본 목표</li>
-            <li class="list-group-item">한번에 여러 호출을 해도 한번에 하나의 dialog만 뜸</li>
             <li class="list-group-item">promise 기반 콜백처리.</li>
         </ul>
-        
+        <ul class="list-group my-1">
+            <li class="list-group-item active">form의 유효성 검사 이슈</li>
+            <li class="list-group-item">HTML 스펙상	: method="dialog"은 constraint validation을 트리거하지 않도록 명시됨 ( https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#form-submission-algorithm )</li>
+            <li class="list-group-item ">실제 브라우저 (Chrome 등) : 	dialog.showModal() 상태에서 button type="submit" 클릭 시 validation 수행함 </li>
+        </ul>
         
         <div>
             <h2>alert([message]);</h2>
@@ -126,20 +103,16 @@
                     >다중</button>
             </div>
         </div>
+       
+
     </div>
     
     <div class="modal-dialog-container">
-        <dialog class="modal-dialog modal-dialog-alert" data-dialog-id="alert">
+        <dialog class="modal-dialog-alert" data-dialog-id="alert">
             <form action="" method="dialog" >
-                <div class="card">
-                    <div class="card-header"><b>Alert</b></div>
-                    <div class="card-body"><div class="modal-dialog-message"></div></div>
-                    <div class="card-footer">
-                        <div class="d-flex">
-                            <button type="submit" class="btn btn-primary flex-fill" >확인</button>
-                        </div>
-                    </div>
-                </div>
+                <h1>alert</h1>
+                <div class="modal-dialog-message"></div>
+                <button type="submit" class="modal-dialog-btn-confirm" >확인</button>
             </form>
         </dialog>
 
@@ -147,8 +120,8 @@
             <form action="" method="dialog">
                 <h1>confirm</h1>
                 <div class="modal-dialog-message"></div>
-                <button type="submit" class="modal-dialog-btn-confirm" value="true" onclick="ModalDialog.close(this,true)">확인</button>
-                <button type="button" class="modal-dialog-btn-cancel" value="false" onclick="ModalDialog.close(this,false)">취소</button>
+                <button type="submit" class="modal-dialog-btn-confirm" value="true" onclick="ExclusiveModal.close(this,true)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel" value="false" onclick="ExclusiveModal.close(this,false)">취소</button>
             </form>
         </dialog>
         <dialog class="modal-dialog-prompt" data-dialog-id="prompt">
@@ -158,12 +131,11 @@
                 <div>
                     <input class="modal-dialog-input" type="text" name="input">
                 </div>
-                <button type="submit" class="modal-dialog-btn-confirm"  onclick="ModalDialog.close(this,this.form.input.value)">확인</button>
-                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+                <button type="submit" class="modal-dialog-btn-confirm"  onclick="ExclusiveModal.close(this,this.form.input.value)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ExclusiveModal.close(this,null)">취소</button>
             </form>
         </dialog>
 
-        
     </div>
 </body>
 </html>
