@@ -16,7 +16,7 @@
 .exclusive-modal-container-bs5 .card{
     min-width: 300px;
     max-height: 80vh;
-    max-width: 80vh;
+    max-width: 80vw;
 }
 
 .exclusive-modal-container-bs5 .dialog-message:empty{
