@@ -39,8 +39,7 @@
     <script src="ExclusiveModal.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.md = new ExclusiveModal(document.querySelector('.exclusive-modal-container'));
-            // md.alert('z').then(()=>{alert('z 확인 클릭')});
+            window.em = new ExclusiveModal(document.querySelector('.exclusive-modal-container'));
         })
     </script>    
 </head>
@@ -66,14 +65,14 @@
         <div>
             <h2>alert([message]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="md.alert().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.alert().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
 
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
-                        md.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                        md.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                        em.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
+                        em.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
+                        em.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -81,14 +80,14 @@
         <div>
             <h2>confirm([message]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="md.confirm().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.confirm().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
 
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
-                        md.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                        md.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                        em.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
+                        em.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
+                        em.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -96,14 +95,14 @@
         <div>
             <h2>prompt([message],[defaultValue]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="md.prompt().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
-                        md.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                        md.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                        em.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
+                        em.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
+                        em.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -112,13 +111,13 @@
             <h2>custom1();</h2>
             <h5>form method="post" : form에서 자동으로 validate 처리.</h5>
             <div>
-                <button type="button" class="btn btn-info" onclick="md.custom1().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.custom1('테스트 custom1','기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.custom1().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.custom1('테스트 custom1','기본값').then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.custom1(`테스트 custom1 X`).then((r)=>{console.log('result X',r)})
-                        md.custom1(`테스트 custom1 Y`).then((r)=>{console.log('result Y',r)})
-                        md.custom1(`테스트 custom1 Z`).then((r)=>{console.log('result Z',r)})
+                        em.custom1(`테스트 custom1 X`).then((r)=>{console.log('result X',r)})
+                        em.custom1(`테스트 custom1 Y`).then((r)=>{console.log('result Y',r)})
+                        em.custom1(`테스트 custom1 Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -128,13 +127,13 @@
             <h5>form method="dialog" + form.reportValidity() : 버튼에서 수동으로 reportValidity 호출에서 처리</h5>
 
             <div>
-                <button type="button" class="btn btn-info" onclick="md.custom2().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.custom2('테스트 custom2','기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.custom2().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.custom2('테스트 custom2','기본값').then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
-                        md.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
-                        md.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
+                        em.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
+                        em.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
+                        em.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -144,13 +143,13 @@
             <h5>form method="dialog" + form.reportValidity() : 버튼에서 수동으로 reportValidity 호출에서 처리</h5>
 
             <div>
-                <button type="button" class="btn btn-info" onclick="md.showModals['custom-3']().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.showModals['custom-3'](`테스트 showModals['custom-3']`,'기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.showModals['custom-3']().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.showModals['custom-3'](`테스트 showModals['custom-3']`,'기본값').then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.showModals['custom-3'](`테스트 showModals['custom-3'] X`).then((r)=>{console.log('result X',r)})
-                        md.showModals['custom-3'](`테스트 showModals['custom-3'] Y`).then((r)=>{console.log('result Y',r)})
-                        md.showModals['custom-3'](`테스트 showModals['custom-3'] Z`).then((r)=>{console.log('result Z',r)})
+                        em.showModals['custom-3'](`테스트 showModals['custom-3'] X`).then((r)=>{console.log('result X',r)})
+                        em.showModals['custom-3'](`테스트 showModals['custom-3'] Y`).then((r)=>{console.log('result Y',r)})
+                        em.showModals['custom-3'](`테스트 showModals['custom-3'] Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -160,13 +159,13 @@
             <h5>form method="dialog" + form.onsubmit : html 스펙에선 안되는데 대부분의 브라우저가 지원한다.</h5>
 
             <div>
-                <button type="button" class="btn btn-info" onclick="md.custom2().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.custom2('테스트 custom4','기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.custom2().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.custom2('테스트 custom4','기본값').then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
-                        md.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
-                        md.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
+                        em.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
+                        em.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
+                        em.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>

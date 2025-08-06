@@ -44,8 +44,7 @@
     <script src="../ExclusiveModal.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.md = new ExclusiveModal(document.querySelector('.exclusive-modal-container'));
-            // md.alert('z').then(()=>{alert('z 확인 클릭')});
+            window.em = new ExclusiveModal(document.querySelector('.exclusive-modal-container'));
         })
     </script>    
 </head>
@@ -60,14 +59,14 @@
         <div>
             <h2>alert([message]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="md.alert().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.alert().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
 
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
-                        md.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                        md.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                        em.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
+                        em.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
+                        em.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -75,14 +74,14 @@
         <div>
             <h2>confirm([message]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="md.confirm().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.confirm().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
 
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
-                        md.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                        md.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                        em.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
+                        em.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
+                        em.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -90,14 +89,14 @@
         <div>
             <h2>prompt([message],[defaultValue]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="md.prompt().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="md.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" 
                     onclick="
-                        md.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
-                        md.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                        md.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                        em.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
+                        em.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
+                        em.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
