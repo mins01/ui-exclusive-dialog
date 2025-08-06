@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko" >
+<head>
+    <title>UI modalDialog - bootstrap 5</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://www.mins01.com/favicon.ico"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="/js/ForGoogle.js"></script>
+    <!-- google analytics -->
+    <script>if(window.ForGoogle){ ForGoogle.analytics() }else{ console.log("failure : ForGoogle.analytics()");}</script>
+    
+
+    <!-- jquery 관련 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+    <!-- 부트스트랩 5.3.x -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    <!-- meta og -->
+    
+    <meta property="og:title" content="UI modalDialog - bootstrap 5">
+    <meta property="og:description" content="UI modalDialog - bootstrap 5">
+    <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
+    <meta property="og:image:width" content="190">
+    <meta property="og:image:height" content="70" />
+    <meta property="og:site_name" content="UI modalDialog" />
+    <meta property="og:type" content="website">
+    
+    <!-- //meta og -->
+
+    <style>
+        .modal-dialog{
+            padding: 2rem;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            color: #333;
+            font-family: sans-serif;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: scale(1);
+        }
+        
+        dialog[open] {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+            backdrop-filter: blur(2px);    /* 흐림 효과 (지원 브라우저 한정) */
+        }
+    </style>
+
+    <script src="ModalDialog.js"></script>
+    <script>
+        window.addEventListener('load',(event)=>{
+            window.md = new ModalDialog(document.querySelector('.modal-dialog-container'));
+        })
+    </script>
+</head>
+<body>
+    <div class="container py-1">
+        <h1>UI modalDialog - bootstrap 5</h1>
+        <ul class="list-group my-1">
+            <li class="list-group-item">부트스트랩 5 적용 한 예제</li>
+            <li class="list-group-item">alert, confirm, prompt 를 에뮬레이션 하는 것이 기본 목표</li>
+            <li class="list-group-item">한번에 여러 호출을 해도 한번에 하나의 dialog만 뜸</li>
+            <li class="list-group-item">promise 기반 콜백처리.</li>
+        </ul>
+        
+        
+        <div>
+            <h2>alert([message]);</h2>
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.alert().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
+                        md.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
+                        md.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
+        <div>
+            <h2>confirm([message]);</h2>
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.confirm().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
+                        md.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
+                        md.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
+        <div>
+            <h2>prompt([message],[defaultValue]);</h2>
+            <div>
+                <button type="button" class="btn btn-info" onclick="md.prompt().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="md.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        md.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
+                        md.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
+                        md.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-dialog-container">
+        <dialog class="modal-dialog modal-dialog-alert" data-dialog-id="alert">
+            <form action="" method="dialog" >
+                <div class="card">
+                    <div class="card-header"><b>Alert</b></div>
+                    <div class="card-body"><div class="modal-dialog-message"></div></div>
+                    <div class="card-footer">
+                        <div class="d-flex">
+                            <button type="submit" class="btn btn-primary flex-fill" >확인</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </dialog>
+
+        <dialog class="modal-dialog-confirm" data-dialog-id="confirm">
+            <form action="" method="dialog">
+                <h1>confirm</h1>
+                <div class="modal-dialog-message"></div>
+                <button type="submit" class="modal-dialog-btn-confirm" value="true" onclick="ModalDialog.close(this,true)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel" value="false" onclick="ModalDialog.close(this,false)">취소</button>
+            </form>
+        </dialog>
+        <dialog class="modal-dialog-prompt" data-dialog-id="prompt">
+            <form action="" method="dialog">
+                <h1>prompt</h1>
+                <div class="modal-dialog-message"></div>
+                <div>
+                    <input class="modal-dialog-input" type="text" name="input">
+                </div>
+                <button type="submit" class="modal-dialog-btn-confirm"  onclick="ModalDialog.close(this,this.form.input.value)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+            </form>
+        </dialog>
+
+        
+    </div>
+</body>
+</html>

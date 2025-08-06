@@ -1,4 +1,4 @@
-class ModalDialog{
+class ExclusiveModal{
     
     container = null;
     queue = null;

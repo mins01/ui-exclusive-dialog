@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" >
 <head>
-    <title>UI modalDialog</title>
+    <title>UI exclusiveModal</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -27,19 +27,19 @@
     
     <!-- meta og -->
     
-    <meta property="og:title" content="UI modalDialog">
-    <meta property="og:description" content="UI modalDialog">
+    <meta property="og:title" content="UI exclusiveModal">
+    <meta property="og:description" content="UI exclusiveModal">
     <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
     <meta property="og:image:width" content="190">
     <meta property="og:image:height" content="70" />
-    <meta property="og:site_name" content="UI modalDialog" />
+    <meta property="og:site_name" content="UI exclusiveModal" />
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
-    <script src="ModalDialog.js"></script>
+    <script src="ExclusiveModal.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.md = new ModalDialog(document.querySelector('.modal-dialog-container'));
+            window.md = new ExclusiveModal(document.querySelector('.modal-dialog-container'));
             // md.alert('x').then(()=>{alert('x 확인 클릭')});
             // md.alert('y').then(()=>{alert('y 확인 클릭')});
             // md.alert('z').then(()=>{alert('z 확인 클릭')});
@@ -66,11 +66,11 @@
 </head>
 <body>
     <div class="container py-1">
-        <h1>UI modalDialog</h1>
+        <h1>UI exclusiveModal</h1>
         <ul class="list-group my-1">
+            <li class="list-group-item">한번에 여러 호출을 해도 한번에 하나의 dialog만 뜸</li>
             <li class="list-group-item">dialog 태그를 사용하여 modal(뒷 부분을 접근할 수 없는 상태)을 구성한다.</li>
             <li class="list-group-item">alert, confirm, prompt 를 에뮬레이션 하는 것이 기본 목표</li>
-            <li class="list-group-item">한번에 여러 호출을 해도 한번에 하나의 dialog만 뜸</li>
             <li class="list-group-item">promise 기반 콜백처리.</li>
         </ul>
         <ul class="list-group my-1">
@@ -203,8 +203,8 @@
             <form action="" method="dialog">
                 <h1>confirm</h1>
                 <div class="modal-dialog-message"></div>
-                <button type="submit" class="modal-dialog-btn-confirm" value="true" onclick="ModalDialog.close(this,true)">확인</button>
-                <button type="button" class="modal-dialog-btn-cancel" value="false" onclick="ModalDialog.close(this,false)">취소</button>
+                <button type="submit" class="modal-dialog-btn-confirm" value="true" onclick="ExclusiveModal.close(this,true)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel" value="false" onclick="ExclusiveModal.close(this,false)">취소</button>
             </form>
         </dialog>
         <dialog class="modal-dialog-prompt" data-dialog-id="prompt">
@@ -214,14 +214,14 @@
                 <div>
                     <input class="modal-dialog-input" type="text" name="input">
                 </div>
-                <button type="submit" class="modal-dialog-btn-confirm"  onclick="ModalDialog.close(this,this.form.input.value)">확인</button>
-                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+                <button type="submit" class="modal-dialog-btn-confirm"  onclick="ExclusiveModal.close(this,this.form.input.value)">확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ExclusiveModal.close(this,null)">취소</button>
             </form>
         </dialog>
 
         <!-- 이하 커스텀용 -->
         <dialog class="modal-dialog-prompt" data-dialog-id="custom1">
-            <form action="" method="post" onsubmit="ModalDialog.close(this,this.input.value);return false;">
+            <form action="" method="post" onsubmit="ExclusiveModal.close(this,this.input.value);return false;">
                 <h1>custom1</h1>
                 <div class="modal-dialog-message">##</div>
                 <div class="modal-dialog-static-message">2~10글자를 입력해주세요.</div>
@@ -229,7 +229,7 @@
                     <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
                 <button type="submit" class="modal-dialog-btn-confirm"  >확인</button>
-                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ExclusiveModal.close(this,null)">취소</button>
             </form>
         </dialog>
 
@@ -241,8 +241,8 @@
                 <div>
                     <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
-                <button class="modal-dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ModalDialog.close(this,this.form.input.value) }" >확인</button>
-                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+                <button class="modal-dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ExclusiveModal.close(this,this.form.input.value) }" >확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ExclusiveModal.close(this,null)">취소</button>
             </form>
         </dialog>
         <dialog class="modal-dialog-prompt" data-dialog-id="custom-3">
@@ -253,11 +253,11 @@
                 <div>
                     <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
-                <button type="submit" class="modal-dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ModalDialog.close(this,this.form.input.value) }" >확인</button>
-                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+                <button type="submit" class="modal-dialog-btn-confirm" onclick="if(this.form.reportValidity()){ ExclusiveModal.close(this,this.form.input.value) }" >확인</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ExclusiveModal.close(this,null)">취소</button>
             </form>
         </dialog>
-        <dialog class="modal-dialog-prompt" data-dialog-id="custom4" onsubmit="ModalDialog.close(this,this.form.input.value);return false;">
+        <dialog class="modal-dialog-prompt" data-dialog-id="custom4" onsubmit="ExclusiveModal.close(this,this.form.input.value);return false;">
             <form action="" method="dialog">
                 <h1>custom4</h1>
                 <div class="modal-dialog-message">##</div>
@@ -266,7 +266,7 @@
                     <input class="modal-dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
                 <button class="modal-dialog-btn-confirm" >확인</button>
-                <button type="button" class="modal-dialog-btn-cancel"  onclick="ModalDialog.close(this,null)">취소</button>
+                <button type="button" class="modal-dialog-btn-cancel"  onclick="ExclusiveModal.close(this,null)">취소</button>
             </form>
         </dialog>
 
