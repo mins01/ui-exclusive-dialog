@@ -59,8 +59,9 @@
         <div>
             <h2>alert([message]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="em.alert().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="em.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.alert().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                <button type="button" class="btn btn-info" onclick="em.alert(`테스트 alert\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.alert(`테스트 alert ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
 
                 <button type="button" class="btn btn-info" 
                     onclick="
@@ -74,8 +75,9 @@
         <div>
             <h2>confirm([message]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="em.confirm().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="em.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.confirm().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                <button type="button" class="btn btn-info" onclick="em.confirm(`테스트 confirm\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.confirm(`테스트 confirm ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
 
                 <button type="button" class="btn btn-info" 
                     onclick="
@@ -89,9 +91,10 @@
         <div>
             <h2>prompt([message],[defaultValue]);</h2>
             <div>
-                <button type="button" class="btn btn-info" onclick="em.prompt().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="em.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt(`테스트 prompt\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
                 <button type="button" class="btn btn-info" onclick="em.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="em.prompt(`테스트 prompt ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
                 <button type="button" class="btn btn-info" 
                     onclick="
                         em.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
@@ -109,12 +112,10 @@
         <dialog class="dialog-alert" data-dialog-id="alert">
             <form action="" method="dialog" >
                 <div class="card">
-                    <div class="card-header"><i class="bi bi-info-square"></i> Alert</div>
-                    <div class="card-body d-flex flex-column gap-3">
-                        <div class="dialog-message"></div>
-                        <div class="d-flex gap-3">
+                    <!-- <div class="card-header"><i class="bi bi-info-square"></i> Alert</div> -->
+                    <div class="card-body overflow-y-auto dialog-message"></div>
+                    <div class="card-body d-flex gap-3">
                             <button type="submit" class="btn btn-primary flex-fill" >확인</button>
-                        </div>
                     </div>
                 </div>
             </form>
@@ -123,13 +124,11 @@
         <dialog class="dialog-confirm" data-dialog-id="confirm">
             <form action="" method="dialog">
                 <div class="card">
-                    <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div>
-                    <div class="card-body d-flex flex-column gap-3">
-                        <div class="dialog-message"></div>
-                        <div class="d-flex gap-3">
-                            <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveModal.close(this,true)">확인</button>
-                            <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveModal.close(this,false)">취소</button>
-                        </div>
+                    <!-- <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div> -->
+                    <div class="card-body overflow-y-auto dialog-message"></div>
+                    <div class="card-body d-flex gap-3">
+                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveModal.close(this,true)">확인</button>
+                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveModal.close(this,false)">취소</button>
                     </div>
                 </div>
             </form>
@@ -137,16 +136,14 @@
         <dialog class="dialog-prompt" data-dialog-id="prompt">
             <form action="" method="dialog">
                 <div class="card">
-                    <div class="card-header"><i class="bi bi-chat-right-text"></i> Confirm</div>
+                    <!-- <div class="card-header"><i class="bi bi-chat-right-text"></i> Prompt</div> -->
+                    <div class="card-body overflow-y-auto dialog-message"></div>
                     <div class="card-body d-flex flex-column gap-3">
-                        <div class="dialog-message"></div>
-                        <div>
-                            <input class="dialog-input form-control" type="text" name="input">
-                        </div>
-                        <div class="d-flex gap-3">
-                            <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveModal.close(this,this.form.input.value)">확인</button>
-                            <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveModal.close(this,null)">취소</button>
-                        </div>
+                        <input class="dialog-input form-control" type="text" name="input">
+                    </div>
+                    <div class="card-body d-flex gap-3">
+                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveModal.close(this,this.form.input.value)">확인</button>
+                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveModal.close(this,null)">취소</button>
                     </div>
                 </div>
             </form>

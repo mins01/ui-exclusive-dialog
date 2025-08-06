@@ -8,14 +8,21 @@
     border-width: 0;
     background-color: transparent;
     padding:0;
+    overflow: hidden;
 }
 .exclusive-modal-container-bs5 dialog::backdrop{
     background-color: rgba(0,0,0,0.5);
 }
 .exclusive-modal-container-bs5 .card{
     min-width: 300px;
+    max-height: 80vh;
+    max-width: 80vh;
 }
 
 .exclusive-modal-container-bs5 .dialog-message:empty{
     display: none;
+}
+.exclusive-modal-container-bs5 .dialog-message{
+    white-space: pre-wrap;
+    white-space: break-spaces;
 }
