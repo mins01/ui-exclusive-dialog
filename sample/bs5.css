@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.exclusive-modal-container-bs5{
+
+}
+
+.exclusive-modal-container-bs5 dialog{
+    border-width: 0;
+    background-color: transparent;
+    padding:0;
+}
+.exclusive-modal-container-bs5 dialog::backdrop{
+    background-color: rgba(0,0,0,0.5);
+}
+.exclusive-modal-container-bs5 .card{
+    min-width: 300px;
+}
+
+.exclusive-modal-container-bs5 .dialog-message:empty{
+    display: none;
+}
