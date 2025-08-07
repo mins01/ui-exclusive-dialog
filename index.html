@@ -103,6 +103,21 @@
             </div>
         </div>
         <div>
+            <h2>returnValue();</h2>
+            <h5>form method="post" : form에서 자동으로 validate 처리.</h5>
+            <div>
+                <button type="button" class="btn btn-info" onclick="ed.returnValue().then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" onclick="ed.returnValue('테스트 returnValue','기본값').then((r)=>{console.log('result',r)})">테스트</button>
+                <button type="button" class="btn btn-info" 
+                    onclick="
+                        ed.returnValue(`테스트 returnValue X`).then((r)=>{console.log('result X',r)})
+                        ed.returnValue(`테스트 returnValue Y`).then((r)=>{console.log('result Y',r)})
+                        ed.returnValue(`테스트 returnValue ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
+                    "
+                    >다중</button>
+            </div>
+        </div>
+        <div>
             <h2>custom1();</h2>
             <h5>form method="post" : form에서 자동으로 validate 처리.</h5>
             <div>
@@ -198,6 +213,21 @@
         </dialog>
 
         <!-- 이하 커스텀용 -->
+        <dialog class="dialog-prompt" data-dialog-id="returnValue">
+            <form action="" method="dialog">
+                <h1>returnValue</h1>
+                <div class="dialog-message">##</div>
+                <button type="submit"  value="Yes" >Yes</button>
+                <button type="submit"  value="No" >No</button>
+                <button type="submit"  value="Test" >Test</button>
+                <button type="submit"  onclick="ExclusiveDialog.close(this,123)" >number 123</button>
+                <button type="submit"  onclick="ExclusiveDialog.close(this)" >undefined</button>
+                <button type="submit"  onclick="ExclusiveDialog.close(this,null)" >null</button>
+                <button type="submit"  onclick="ExclusiveDialog.close(this,true)" >true</button>
+                <button type="submit"  onclick="ExclusiveDialog.close(this,false)" >false</button>
+            </form>
+        </dialog>
+
         <dialog class="dialog-prompt" data-dialog-id="custom1">
             <form action="" method="post" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <h1>custom1</h1>
