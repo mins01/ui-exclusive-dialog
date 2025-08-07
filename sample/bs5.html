@@ -70,7 +70,7 @@
                         onclick="
                             ed1.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
                             ed1.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                            ed1.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                            ed1.alert(`테스트 alert ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -86,7 +86,7 @@
                         onclick="
                             ed1.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
                             ed1.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                            ed1.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                            ed1.confirm(`테스트 confirm ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -102,7 +102,7 @@
                         onclick="
                             ed1.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
                             ed1.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                            ed1.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                            ed1.prompt(`테스트 prompt ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -122,7 +122,7 @@
                         onclick="
                             ed2.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
                             ed2.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                            ed2.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                            ed2.alert(`테스트 alert ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -138,7 +138,7 @@
                         onclick="
                             ed2.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
                             ed2.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                            ed2.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                            ed2.confirm(`테스트 confirm ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -154,7 +154,7 @@
                         onclick="
                             ed2.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
                             ed2.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                            ed2.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                            ed2.prompt(`테스트 prompt ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -164,12 +164,12 @@
 
     </div>
     
-    <div class="exclusive-modal-container exclusive-modal-container-bs5  sample-1">
+    <div class="exclusive-dialog-container exclusive-dialog-container-bs5  sample-1">
         <dialog class="dialog-alert" data-dialog-id="alert">
             <form action="" method="dialog" >
                 <div class="card shadow ">
                     <!-- <div class="card-header"><i class="bi bi-info-square"></i> Alert</div> -->
-                    <div class="card-body overflow-y-auto dialog-message"></div>
+                    <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
                     <div class="card-body d-flex gap-3">
                             <button type="submit" class="btn btn-primary flex-fill" >확인</button>
                     </div>
@@ -181,7 +181,7 @@
             <form action="" method="dialog">
                 <div class="card shadow ">
                     <!-- <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div> -->
-                    <div class="card-body overflow-y-auto dialog-message"></div>
+                    <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
                     <div class="card-body d-flex gap-3">
                         <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,true)">확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,false)">취소</button>
@@ -190,15 +190,15 @@
             </form>
         </dialog>
         <dialog class="dialog-prompt" data-dialog-id="prompt">
-            <form action="" method="dialog">
+            <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <div class="card shadow ">
                     <!-- <div class="card-header"><i class="bi bi-chat-right-text"></i> Prompt</div> -->
-                    <div class="card-body overflow-y-auto dialog-message"></div>
-                    <div class="card-body d-flex flex-column gap-3">
+                    <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
+                    <div class="card-body d-flex flex-column gap-3 pb-0">
                         <input class="dialog-input form-control" type="text" name="input">
                     </div>
                     <div class="card-body d-flex gap-3">
-                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,this.form.input.value)">확인</button>
+                        <button type="submit" class="btn btn-success flex-fill" >확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,null)">취소</button>
                     </div>
                 </div>
@@ -206,12 +206,12 @@
         </dialog>
     </div>
 
-    <div class="exclusive-modal-container exclusive-modal-container-bs5 sample-2">
+    <div class="exclusive-dialog-container exclusive-dialog-container-bs5 sample-2">
         <dialog class="dialog-alert" data-dialog-id="alert">
             <form action="" method="dialog" >
                 <div class="card shadow ">
                     <div class="card-header"><i class="bi bi-info-square"></i> Alert</div>
-                    <div class="card-body overflow-y-auto dialog-message"></div>
+                    <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
                     <div class="card-body d-flex gap-3">
                             <button type="submit" class="btn btn-primary flex-fill" >확인</button>
                     </div>
@@ -223,7 +223,7 @@
             <form action="" method="dialog">
                 <div class="card shadow ">
                     <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div>
-                    <div class="card-body overflow-y-auto dialog-message"></div>
+                    <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
                     <div class="card-body d-flex gap-3">
                         <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,true)">확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,false)">취소</button>
@@ -232,15 +232,15 @@
             </form>
         </dialog>
         <dialog class="dialog-prompt" data-dialog-id="prompt">
-            <form action="" method="dialog">
+            <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <div class="card shadow ">
                     <div class="card-header"><i class="bi bi-chat-right-text"></i> Prompt</div>
-                    <div class="card-body overflow-y-auto dialog-message"></div>
-                    <div class="card-body d-flex flex-column gap-3">
+                    <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
+                    <div class="card-body d-flex flex-column gap-3 pb-0">
                         <input class="dialog-input form-control" type="text" name="input">
                     </div>
                     <div class="card-body d-flex gap-3">
-                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,this.form.input.value)">확인</button>
+                        <button type="submit" class="btn btn-success flex-fill" >확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,null)">취소</button>
                     </div>
                 </div>

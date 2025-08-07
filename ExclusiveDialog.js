@@ -50,9 +50,11 @@ class ExclusiveDialog{
         // console.log('showAlert',[...arguments]);
         this._resolve = resolve
         this._reject = reject
-        const messageBox = dialog.querySelector('.dialog-message');
-        if(messageBox){ messageBox.textContent = message; }
-        const input = dialog.querySelector('input, select, textarea');
+        dialog.querySelectorAll('.dialog-message').forEach((messageBox)=>{
+            messageBox.textContent = message;
+        });
+        
+        const input = dialog.querySelector('input, select, textarea'); // 가장 첫 input 요소
         if(input){
             input.defaultValue = defaultValue
             input.value = defaultValue

@@ -66,7 +66,7 @@
                     onclick="
                         ed.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
                         ed.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                        ed.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                        ed.alert(`테스트 alert ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -81,7 +81,7 @@
                     onclick="
                         ed.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
                         ed.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                        ed.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                        ed.confirm(`테스트 confirm ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -96,7 +96,7 @@
                     onclick="
                         ed.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
                         ed.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                        ed.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                        ed.prompt(`테스트 prompt ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -111,7 +111,7 @@
                     onclick="
                         ed.custom1(`테스트 custom1 X`).then((r)=>{console.log('result X',r)})
                         ed.custom1(`테스트 custom1 Y`).then((r)=>{console.log('result Y',r)})
-                        ed.custom1(`테스트 custom1 Z`).then((r)=>{console.log('result Z',r)})
+                        ed.custom1(`테스트 custom1 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -127,7 +127,7 @@
                     onclick="
                         ed.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
                         ed.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
-                        ed.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
+                        ed.custom2(`테스트 custom2 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -143,7 +143,7 @@
                     onclick="
                         ed.showModals['custom-3'](`테스트 showModals['custom-3'] X`).then((r)=>{console.log('result X',r)})
                         ed.showModals['custom-3'](`테스트 showModals['custom-3'] Y`).then((r)=>{console.log('result Y',r)})
-                        ed.showModals['custom-3'](`테스트 showModals['custom-3'] Z`).then((r)=>{console.log('result Z',r)})
+                        ed.showModals['custom-3'](`테스트 showModals['custom-3'] ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -159,7 +159,7 @@
                     onclick="
                         ed.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
                         ed.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
-                        ed.custom2(`테스트 custom2 Z`).then((r)=>{console.log('result Z',r)})
+                        ed.custom2(`테스트 custom2 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
                     "
                     >다중</button>
             </div>
@@ -185,14 +185,14 @@
             </form>
         </dialog>
         <dialog class="dialog-prompt" data-dialog-id="prompt">
-            <form action="" method="dialog">
+            <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <h1>prompt</h1>
                 <div class="dialog-message"></div>
                 <div>
                     <input class="dialog-input" type="text" name="input">
                 </div>
-                <button type="submit"  onclick="ExclusiveDialog.close(this,this.form.input.value)">확인</button>
-                <button type="button"  onclick="ExclusiveDialog.close(this,null)">취소</button>
+                <button type="submit">확인</button>
+                <button type="button" onclick="ExclusiveDialog.close(this,null)">취소</button>
             </form>
         </dialog>
 
@@ -201,6 +201,7 @@
             <form action="" method="post" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <h1>custom1</h1>
                 <div class="dialog-message">##</div>
+                <div class="dialog-message" style="font-size: small;">##</div>
                 <div class="dialog-static-message">2~10글자를 입력해주세요.</div>
                 <div>
                     <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
