@@ -15,23 +15,32 @@
     background-color: rgba(0,0,0,0.5);
 }
 .exclusive-dialog-container-bs5 .card{
-    width: 600px;
+    width: 100%;
     max-height: 50vh;
     max-height: 50svh;
+    --bs-box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.5);
+}
+
+.exclusive-dialog-container-bs5 .card{
+    width: 720px;
     max-width: 80vw;
     max-width: 80svw;
-
-    --bs-box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.5);
+    max-height: 50vh;
+    max-height: 50svh;
 }
 @media (max-width: 800px) {
   .exclusive-dialog-container-bs5 .card {
-    width: auto;
-    min-width: 60vw;
-    min-width: 60svw;
-    max-width: 80vw;
-    max-width: 80svw;
+    width: 540px;
   }
 }
+@media (max-width: 600px) {
+  .exclusive-dialog-container-bs5 .card {
+    min-width:auto;
+    width: 80vw;
+    width: 80svw;
+  }
+}
+
 .exclusive-dialog-container-bs5 .dialog-message:empty{
     display: none;
 }
