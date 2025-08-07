@@ -15,7 +15,7 @@
     background-color: rgba(0,0,0,0.5);
 }
 .exclusive-dialog-container-bs5 .card{
-    min-width: 200px;
+    width: 600px;
     max-height: 50vh;
     max-height: 50svh;
     max-width: 80vw;
@@ -23,11 +23,20 @@
 
     --bs-box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.5);
 }
-
+@media (max-width: 800px) {
+  .exclusive-dialog-container-bs5 .card {
+    width: auto;
+    min-width: 60vw;
+    min-width: 60svw;
+    max-width: 80vw;
+    max-width: 80svw;
+  }
+}
 .exclusive-dialog-container-bs5 .dialog-message:empty{
     display: none;
 }
 .exclusive-dialog-container-bs5 .dialog-message{
     white-space: pre-wrap;
     white-space: break-spaces;
+    word-break: break-all;
 }
