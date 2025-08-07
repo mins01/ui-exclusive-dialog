@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" >
 <head>
-    <title>UI exclusiveDialogModal - bs5</title>
+    <title>UI exclusiveDialog - bs5</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -31,28 +31,28 @@
 
     <!-- meta og -->
     
-    <meta property="og:title" content="UI exclusiveDialogModal - bs5">
-    <meta property="og:description" content="UI exclusiveDialogModal - bs5">
+    <meta property="og:title" content="UI exclusiveDialog - bs5">
+    <meta property="og:description" content="UI exclusiveDialog - bs5">
     <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
     <meta property="og:image:width" content="190">
     <meta property="og:image:height" content="70" />
-    <meta property="og:site_name" content="UI exclusiveDialogModal - bs5" />
+    <meta property="og:site_name" content="UI exclusiveDialog - bs5" />
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
     <link rel="stylesheet" href="bs5.css">
-    <script src="../ExclusiveDialogModal.js"></script>
+    <script src="../ExclusiveDialog.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.edm1 = new ExclusiveDialogModal(document.querySelector('.sample-1'));
-            window.edm2 = new ExclusiveDialogModal();
-            window.edm2.attachAll(document.querySelector('.sample-2'));
+            window.ed1 = new ExclusiveDialog(document.querySelector('.sample-1'));
+            window.ed2 = new ExclusiveDialog();
+            window.ed2.attachAll(document.querySelector('.sample-2'));
         })
     </script>    
 </head>
 <body>
     <div class="container py-1">
-        <h1>UI exclusiveDialogModal - bs5</h1>
+        <h1>UI exclusiveDialog - bs5</h1>
         <ul class="list-group my-1">
             <li class="list-group-item">부트스트랩 5 적용 샘플</li>
         </ul>
@@ -62,15 +62,15 @@
             <div>
                 <h2>alert([message]);</h2>
                 <div>
-                    <button type="button" class="btn btn-info" onclick="edm1.alert().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="edm1.alert(`테스트 alert\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm1.alert(`테스트 alert ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.alert().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.alert(`테스트 alert\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.alert(`테스트 alert ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
     
                     <button type="button" class="btn btn-info" 
                         onclick="
-                            edm1.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
-                            edm1.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                            edm1.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                            ed1.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
+                            ed1.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
+                            ed1.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -78,15 +78,15 @@
             <div>
                 <h2>confirm([message]);</h2>
                 <div>
-                    <button type="button" class="btn btn-info" onclick="edm1.confirm().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="edm1.confirm(`테스트 confirm\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm1.confirm(`테스트 confirm ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.confirm().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.confirm(`테스트 confirm\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.confirm(`테스트 confirm ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
     
                     <button type="button" class="btn btn-info" 
                         onclick="
-                            edm1.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
-                            edm1.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                            edm1.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                            ed1.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
+                            ed1.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
+                            ed1.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -94,15 +94,15 @@
             <div>
                 <h2>prompt([message],[defaultValue]);</h2>
                 <div>
-                    <button type="button" class="btn btn-info" onclick="edm1.prompt().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="edm1.prompt(`테스트 prompt\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm1.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm1.prompt(`테스트 prompt ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.prompt().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.prompt(`테스트 prompt\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed1.prompt(`테스트 prompt ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
                     <button type="button" class="btn btn-info" 
                         onclick="
-                            edm1.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
-                            edm1.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                            edm1.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                            ed1.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
+                            ed1.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
+                            ed1.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -114,15 +114,15 @@
             <div>
                 <h2>alert([message]);</h2>
                 <div>
-                    <button type="button" class="btn btn-info" onclick="edm2.alert().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="edm2.alert(`테스트 alert\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm2.alert(`테스트 alert ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.alert().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.alert(`테스트 alert\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.alert(`테스트 alert ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
     
                     <button type="button" class="btn btn-info" 
                         onclick="
-                            edm2.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
-                            edm2.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                            edm2.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
+                            ed2.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
+                            ed2.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
+                            ed2.alert(`테스트 alert Z`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -130,15 +130,15 @@
             <div>
                 <h2>confirm([message]);</h2>
                 <div>
-                    <button type="button" class="btn btn-info" onclick="edm2.confirm().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="edm2.confirm(`테스트 confirm\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm2.confirm(`테스트 confirm ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.confirm().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.confirm(`테스트 confirm\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.confirm(`테스트 confirm ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
     
                     <button type="button" class="btn btn-info" 
                         onclick="
-                            edm2.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
-                            edm2.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                            edm2.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
+                            ed2.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
+                            ed2.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
+                            ed2.confirm(`테스트 confirm Z`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -146,15 +146,15 @@
             <div>
                 <h2>prompt([message],[defaultValue]);</h2>
                 <div>
-                    <button type="button" class="btn btn-info" onclick="edm2.prompt().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="edm2.prompt(`테스트 prompt\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm2.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="edm2.prompt(`테스트 prompt ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.prompt().then((r)=>{console.log('result',r)})">빈 메세지</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.prompt(`테스트 prompt\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
+                    <button type="button" class="btn btn-info" onclick="ed2.prompt(`테스트 prompt ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
                     <button type="button" class="btn btn-info" 
                         onclick="
-                            edm2.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
-                            edm2.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                            edm2.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
+                            ed2.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
+                            ed2.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
+                            ed2.prompt(`테스트 prompt Z`).then((r)=>{console.log('result Z',r)})
                         "
                         >다중</button>
                 </div>
@@ -183,8 +183,8 @@
                     <!-- <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div> -->
                     <div class="card-body overflow-y-auto dialog-message"></div>
                     <div class="card-body d-flex gap-3">
-                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialogModal.close(this,true)">확인</button>
-                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialogModal.close(this,false)">취소</button>
+                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,true)">확인</button>
+                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,false)">취소</button>
                     </div>
                 </div>
             </form>
@@ -198,8 +198,8 @@
                         <input class="dialog-input form-control" type="text" name="input">
                     </div>
                     <div class="card-body d-flex gap-3">
-                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialogModal.close(this,this.form.input.value)">확인</button>
-                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialogModal.close(this,null)">취소</button>
+                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,this.form.input.value)">확인</button>
+                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,null)">취소</button>
                     </div>
                 </div>
             </form>
@@ -225,8 +225,8 @@
                     <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div>
                     <div class="card-body overflow-y-auto dialog-message"></div>
                     <div class="card-body d-flex gap-3">
-                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialogModal.close(this,true)">확인</button>
-                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialogModal.close(this,false)">취소</button>
+                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,true)">확인</button>
+                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,false)">취소</button>
                     </div>
                 </div>
             </form>
@@ -240,8 +240,8 @@
                         <input class="dialog-input form-control" type="text" name="input">
                     </div>
                     <div class="card-body d-flex gap-3">
-                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialogModal.close(this,this.form.input.value)">확인</button>
-                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialogModal.close(this,null)">취소</button>
+                        <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,this.form.input.value)">확인</button>
+                        <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,null)">취소</button>
                     </div>
                 </div>
             </form>

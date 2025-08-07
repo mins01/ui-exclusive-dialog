@@ -1,4 +1,4 @@
-class ExclusiveDialogModal{
+class ExclusiveDialog{
     
     queue = null;
     dialogs = null;
