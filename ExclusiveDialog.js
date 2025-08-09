@@ -59,6 +59,12 @@ class ExclusiveDialog{
             input.defaultValue = defaultValue
             input.value = defaultValue
         }
+
+        const firstInputOrButton = dialog.querySelector('input, select, textarea, button');
+        if(firstInputOrButton){
+            firstInputOrButton.focus()
+        }
+        window.document.body.classList.add('exclusive-dialog-on');
         dialog.showModal();
     }
     addEventListenerForDialog(dialog){
@@ -67,11 +73,14 @@ class ExclusiveDialog{
         dialog.addEventListener('close',(event)=>{ 
             const target = event.target
             if(this._resolve){
-                this._resolve(target._returnValue??target.returnValue);
+                if('_returnValue' in target){
+                    this._resolve(target._returnValue);
+                    delete target._returnValue; // 삭제
+                }else{
+                    this._resolve(target.returnValue);
+                }
             }
-            if('_returnValue' in target){
-                delete target._returnValue; // 삭제
-            } 
+            window.document.body.classList.remove('exclusive-dialog-on');
             this.runQueue(true)
         })
     }
@@ -93,6 +102,7 @@ class ExclusiveDialog{
     static close(el,val){
         const dialog = el.closest('dialog');
         if(!dialog){return}
+        
         if(typeof val !='string'){ // 문자열이 아닌 경우에만 _returnValue 를 설정해서 사용하며, _returnValue 가 우선 시 된다.
             dialog._returnValue = val; //rawReturnValue
         }

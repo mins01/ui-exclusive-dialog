@@ -36,10 +36,11 @@
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
+    <link rel="stylesheet" href="exclusiveDialog.css">
     <script src="ExclusiveDialog.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.ed = new ExclusiveDialog(document.querySelector('.exclusive-dialog-modal-container'));
+            window.edialog = new ExclusiveDialog(document.querySelector('.exclusive-dialog-modal-container'));
         })
     </script>    
 </head>
@@ -51,141 +52,180 @@
             <li class="list-group-item">dialog 태그를 사용하여 modal(뒷 부분을 접근할 수 없는 상태)을 구성한다.</li>
             <li class="list-group-item">alert, confirm, prompt 를 에뮬레이션 하는 것이 기본 목표</li>
             <li class="list-group-item">promise 기반 콜백처리.</li>
+            <li class="list-group-item">ExclusiveDialog.close(node,returnValue) 로 처리하면 변수 타입을 유지한다.</li>
         </ul>
         <ul class="list-group my-1">
             <li class="list-group-item">샘플 : <a href="sample/bs5.html">부트스트랩 5</a></li>
             <li class="list-group-item">github : <a href="https://github.com/mins01/ui-exclusive-dialog">mins01/ui-exclusive-dialog</a></li>
-        </ul>        
+        </ul>
         <hr>
         <div>
-            <h2>alert([message]);</h2>
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.alert().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.alert(`테스트 alert ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
-                        ed.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                        ed.alert(`테스트 alert ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
+            <h2>window  dialog</h2>
+            <div class="d-flex flex-wrap gap-1">
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        alert([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = alert(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = alert(); console.log('result',r)}">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = alert(`테스트 ${Date.now()}`.repeat(100)); console.log('result',r)}">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{
+                            let r = alert(`테스트 X`); console.log('result X',r);
+                            r = alert(); console.log('result Y',r);
+                            r = alert(`테스트 Z`.repeat(1000)); console.log('result Z',r);
+                        }
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        Boolean returnValue = edialog.confirm([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = confirm(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = confirm(); console.log('result',r)}">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = confirm(`테스트 ${Date.now()}`.repeat(100)); console.log('result',r)}">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{
+                            let r = confirm(`테스트 X`); console.log('result X',r);
+                            r = confirm(); console.log('result Y',r);
+                            r = confirm(`테스트 Z`.repeat(1000)); console.log('result Z',r);
+                        }
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        String returnValue = edialog.prompt([message],[defaultValue] );
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = prompt(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = prompt(); console.log('result',r)}">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = prompt(`테스트 ${Date.now()}`.repeat(100)); console.log('result',r)}">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{
+                            let r = prompt(`테스트 X`); console.log('result X',r);
+                            r = prompt(); console.log('result Y',r);
+                            r = prompt(`테스트 Z`.repeat(1000)); console.log('result Z',r);
+                        }
+                            ">Multi</button>
+                    </div>
+                </div>
             </div>
         </div>
+        <hr>
         <div>
-            <h2>confirm([message]);</h2>
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.confirm().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.confirm(`테스트 confirm ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
-                        ed.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                        ed.confirm(`테스트 confirm ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
+            <h2>Basic dialog</h2>
+            <div class="d-flex flex-wrap gap-1">
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        edialog.alert([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.alert(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.alert().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.alert(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.alert(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.alert().then((r)=>{console.log('result Y',r)})
+                                edialog.alert(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        Boolean returnValue = edialog.confirm([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.confirm(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.confirm().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.confirm(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.confirm(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.confirm().then((r)=>{console.log('result Y',r)})
+                                edialog.confirm(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        String returnValue = edialog.prompt([message],[defaultValue] );
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.prompt(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.prompt().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.prompt(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.prompt(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.prompt().then((r)=>{console.log('result Y',r)})
+                                edialog.prompt(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
             </div>
         </div>
+        <hr>
         <div>
-            <h2>prompt([message],[defaultValue]);</h2>
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.prompt().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.prompt('테스트 prompt').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
-                        ed.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                        ed.prompt(`테스트 prompt ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
+            <h2>Custom dialog</h2>
+            <div class="d-flex flex-wrap gap-1">
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        edialog.testReturnValue();
+                        <div class="form-text">returnValue 처리에 대한 테스트</div>
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.testReturnValue(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.testReturnValue().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.testReturnValue(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.testReturnValue(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.testReturnValue().then((r)=>{console.log('result Y',r)})
+                                edialog.testReturnValue(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        edialog.custom1();
+                        <div class="form-text">
+                            onsubmit 예제
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.custom1(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.custom1().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.custom1(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.custom1(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.custom1().then((r)=>{console.log('result Y',r)})
+                                edialog.custom1(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;;">
+                    <div class="card-header">
+                        edialog.custom2();
+                        <div class="form-text">
+                            버튼의 onclick 처리 예제
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.custom2(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.custom2().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.custom2(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.custom2(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.custom2().then((r)=>{console.log('result Y',r)})
+                                edialog.custom2(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div>
-            <h2>returnValue();</h2>
-            <h5>form method="post" : form에서 자동으로 validate 처리.</h5>
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.returnValue().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.returnValue('테스트 returnValue','기본값').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.returnValue(`테스트 returnValue X`).then((r)=>{console.log('result X',r)})
-                        ed.returnValue(`테스트 returnValue Y`).then((r)=>{console.log('result Y',r)})
-                        ed.returnValue(`테스트 returnValue ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
-            </div>
-        </div>
-        <div>
-            <h2>custom1();</h2>
-            <h5>form method="post" : form에서 자동으로 validate 처리.</h5>
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.custom1().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.custom1('테스트 custom1','기본값').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.custom1(`테스트 custom1 X`).then((r)=>{console.log('result X',r)})
-                        ed.custom1(`테스트 custom1 Y`).then((r)=>{console.log('result Y',r)})
-                        ed.custom1(`테스트 custom1 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
-            </div>
-        </div>
-        <div>
-            <h2>custom2();</h2>
-            <h5>form method="dialog" + form.reportValidity() : 버튼에서 수동으로 reportValidity 호출에서 처리</h5>
-
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.custom2().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.custom2('테스트 custom2','기본값').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
-                        ed.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
-                        ed.custom2(`테스트 custom2 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
-            </div>
-        </div>
-        <div>
-            <h2>showModals['custom-3']();</h2>
-            <h5>form method="dialog" + form.reportValidity() : 버튼에서 수동으로 reportValidity 호출에서 처리</h5>
-
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.showModals['custom-3']().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.showModals['custom-3'](`테스트 showModals['custom-3']`,'기본값').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.showModals['custom-3'](`테스트 showModals['custom-3'] X`).then((r)=>{console.log('result X',r)})
-                        ed.showModals['custom-3'](`테스트 showModals['custom-3'] Y`).then((r)=>{console.log('result Y',r)})
-                        ed.showModals['custom-3'](`테스트 showModals['custom-3'] ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
-            </div>
-        </div>
-        <div>
-            <h2>custom4();</h2>
-            <h5>form method="dialog" + form.onsubmit : html 스펙에선 안되는데 대부분의 브라우저가 지원한다.</h5>
-
-            <div>
-                <button type="button" class="btn btn-info" onclick="ed.custom2().then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" onclick="ed.custom2('테스트 custom4','기본값').then((r)=>{console.log('result',r)})">테스트</button>
-                <button type="button" class="btn btn-info" 
-                    onclick="
-                        ed.custom2(`테스트 custom2 X`).then((r)=>{console.log('result X',r)})
-                        ed.custom2(`테스트 custom2 Y`).then((r)=>{console.log('result Y',r)})
-                        ed.custom2(`테스트 custom2 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                    "
-                    >다중</button>
-            </div>
-        </div>
-
     </div>
     
     <div class="exclusive-dialog-modal-container">
         <dialog class="dialog-alert" data-dialog-id="alert">
-            <form action="" method="dialog" >
+            <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this);return false;" >
                 <h1>alert</h1>
                 <div class="dialog-message"></div>
                 <button type="submit" >확인</button>
@@ -213,9 +253,9 @@
         </dialog>
 
         <!-- 이하 커스텀용 -->
-        <dialog class="dialog-prompt" data-dialog-id="returnValue">
+        <dialog class="dialog-prompt" data-dialog-id="testReturnValue">
             <form action="" method="dialog">
-                <h1>returnValue</h1>
+                <h1>testReturnValue</h1>
                 <div class="dialog-message">##</div>
                 <button type="submit"  value="Yes" >Yes</button>
                 <button type="submit"  value="No" >No</button>
@@ -229,7 +269,7 @@
         </dialog>
 
         <dialog class="dialog-prompt" data-dialog-id="custom1">
-            <form action="" method="post" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
+            <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <h1>custom1</h1>
                 <div class="dialog-message">##</div>
                 <div class="dialog-message" style="font-size: small;">##</div>
@@ -251,30 +291,6 @@
                     <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
                 </div>
                 <button onclick="if(this.form.reportValidity()){ ExclusiveDialog.close(this,this.form.input.value) }" >확인</button>
-                <button type="button"  onclick="ExclusiveDialog.close(this,null)">취소</button>
-            </form>
-        </dialog>
-        <dialog class="dialog-prompt" data-dialog-id="custom-3">
-            <form action="" method="dialog" onsubmit="alert('xxx')">
-                <h1>custom-3</h1>
-                <div class="dialog-message">##</div>
-                <div class="dialog-static-message">2~10글자를 입력해주세요.</div>
-                <div>
-                    <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
-                </div>
-                <button type="submit" onclick="if(this.form.reportValidity()){ ExclusiveDialog.close(this,this.form.input.value) }" >확인</button>
-                <button type="button"  onclick="ExclusiveDialog.close(this,null)">취소</button>
-            </form>
-        </dialog>
-        <dialog class="dialog-prompt" data-dialog-id="custom4" onsubmit="ExclusiveDialog.close(this,this.form.input.value);return false;">
-            <form action="" method="dialog">
-                <h1>custom4</h1>
-                <div class="dialog-message">##</div>
-                <div class="dialog-static-message">2~10글자를 입력해주세요.</div>
-                <div>
-                    <input class="dialog-input" type="text" name="input" minlength="2" maxlength="10" required>
-                </div>
-                <button >확인</button>
                 <button type="button"  onclick="ExclusiveDialog.close(this,null)">취소</button>
             </form>
         </dialog>
