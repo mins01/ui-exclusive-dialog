@@ -64,7 +64,7 @@ class ExclusiveDialog{
         if(firstInputOrButton){
             firstInputOrButton.focus()
         }
-        window.document.body.classList.add('exclusive-dialog-on');
+        window.document.body.classList.add('exclusive-dialog-open');
         dialog.showModal();
     }
     addEventListenerForDialog(dialog){
@@ -80,7 +80,7 @@ class ExclusiveDialog{
                     this._resolve(target.returnValue);
                 }
             }
-            window.document.body.classList.remove('exclusive-dialog-on');
+            window.document.body.classList.remove('exclusive-dialog-open');
             this.runQueue(true)
         })
     }

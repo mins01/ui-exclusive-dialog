@@ -15,31 +15,20 @@
     background-color: rgba(0,0,0,0.5);
 }
 .exclusive-dialog-container-bs5 .card{
-    width: 100%;
-    max-height: 50vh;
-    max-height: 50svh;
+    width: 450px;
+    max-height: 80vh;
+    max-height: 80svh;
     --bs-box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.5);
 }
 
 .exclusive-dialog-container-bs5 .card{
-    width: 720px;
+    width: 450px;
     max-width: 80vw;
     max-width: 80svw;
-    max-height: 50vh;
-    max-height: 50svh;
+    max-height: 40vh;
+    max-height: 40svh;
 }
-@media (max-width: 800px) {
-  .exclusive-dialog-container-bs5 .card {
-    width: 540px;
-  }
-}
-@media (max-width: 600px) {
-  .exclusive-dialog-container-bs5 .card {
-    min-width:auto;
-    width: 80vw;
-    width: 80svw;
-  }
-}
+
 
 .exclusive-dialog-container-bs5 .dialog-message:empty{
     display: none;

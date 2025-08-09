@@ -40,13 +40,14 @@
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
+    <link rel="stylesheet" href="../exclusiveDialog.css">
     <link rel="stylesheet" href="bs5.css">
     <script src="../ExclusiveDialog.js"></script>
     <script>
         window.addEventListener('load',(event)=>{
-            window.ed1 = new ExclusiveDialog(document.querySelector('.sample-1'));
-            window.ed2 = new ExclusiveDialog();
-            window.ed2.attachAll(document.querySelector('.sample-2'));
+            window.edialog = new ExclusiveDialog(document.querySelector('.sample-1'));
+            window.edialog2 = new ExclusiveDialog();
+            window.edialog2.attachAll(document.querySelector('.sample-2'));
         })
     </script>    
 </head>
@@ -57,106 +58,158 @@
             <li class="list-group-item">부트스트랩 5 적용 샘플</li>
         </ul>
         <hr>
-        <h2>header 없음</h2>
         <div>
-            <div>
-                <h2>alert([message]);</h2>
-                <div>
-                    <button type="button" class="btn btn-info" onclick="ed1.alert().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="ed1.alert(`테스트 alert\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed1.alert(`테스트 alert ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
-    
-                    <button type="button" class="btn btn-info" 
-                        onclick="
-                            ed1.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
-                            ed1.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                            ed1.alert(`테스트 alert ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                        "
-                        >다중</button>
+            <h2>window  dialog</h2>
+            <div class="d-flex flex-wrap align-items-start gap-1">
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        alert([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = alert(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = alert(); console.log('result',r)}">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = alert(`테스트 ${Date.now()}`.repeat(100)); console.log('result',r)}">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{
+                            let r = alert(`테스트 X`); console.log('result X',r);
+                            r = alert(); console.log('result Y',r);
+                            r = alert(`테스트 Z`.repeat(1000)); console.log('result Z',r);
+                        }
+                            ">Multi</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2>confirm([message]);</h2>
-                <div>
-                    <button type="button" class="btn btn-info" onclick="ed1.confirm().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="ed1.confirm(`테스트 confirm\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed1.confirm(`테스트 confirm ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
-    
-                    <button type="button" class="btn btn-info" 
-                        onclick="
-                            ed1.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
-                            ed1.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                            ed1.confirm(`테스트 confirm ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                        "
-                        >다중</button>
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        Boolean returnValue = edialog.confirm([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = confirm(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = confirm(); console.log('result',r)}">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = confirm(`테스트 ${Date.now()}`.repeat(100)); console.log('result',r)}">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{
+                            let r = confirm(`테스트 X`); console.log('result X',r);
+                            r = confirm(); console.log('result Y',r);
+                            r = confirm(`테스트 Z`.repeat(1000)); console.log('result Z',r);
+                        }
+                            ">Multi</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2>prompt([message],[defaultValue]);</h2>
-                <div>
-                    <button type="button" class="btn btn-info" onclick="ed1.prompt().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="ed1.prompt(`테스트 prompt\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed1.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed1.prompt(`테스트 prompt ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
-                    <button type="button" class="btn btn-info" 
-                        onclick="
-                            ed1.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
-                            ed1.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                            ed1.prompt(`테스트 prompt ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                        "
-                        >다중</button>
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        String returnValue = edialog.prompt([message],[defaultValue] );
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = prompt(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = prompt(); console.log('result',r)}">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{const r = prompt(`테스트 ${Date.now()}`.repeat(100)); console.log('result',r)}">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="{
+                            let r = prompt(`테스트 X`); console.log('result X',r);
+                            r = prompt(); console.log('result Y',r);
+                            r = prompt(`테스트 Z`.repeat(1000)); console.log('result Z',r);
+                        }
+                            ">Multi</button>
+                    </div>
                 </div>
             </div>
         </div>
         <hr>
-        <h2>header 있음</h2>
         <div>
-            <div>
-                <h2>alert([message]);</h2>
-                <div>
-                    <button type="button" class="btn btn-info" onclick="ed2.alert().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="ed2.alert(`테스트 alert\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed2.alert(`테스트 alert ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
-    
-                    <button type="button" class="btn btn-info" 
-                        onclick="
-                            ed2.alert(`테스트 alert X`).then((r)=>{console.log('result X',r)})
-                            ed2.alert(`테스트 alert Y`).then((r)=>{console.log('result Y',r)})
-                            ed2.alert(`테스트 alert ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                        "
-                        >다중</button>
+            <h2>headerless</h2>
+            <div class="d-flex flex-wrap align-items-start gap-1">
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        edialog.alert([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.alert(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.alert().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.alert(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.alert(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.alert().then((r)=>{console.log('result Y',r)})
+                                edialog.alert(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        Boolean returnValue = edialog.confirm([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.confirm(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.confirm().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.confirm(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.confirm(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.confirm().then((r)=>{console.log('result Y',r)})
+                                edialog.confirm(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        String returnValue = edialog.prompt([message],[defaultValue] );
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.prompt(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.prompt().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.prompt(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog.prompt(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog.prompt().then((r)=>{console.log('result Y',r)})
+                                edialog.prompt(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
                 </div>
             </div>
-            <div>
-                <h2>confirm([message]);</h2>
-                <div>
-                    <button type="button" class="btn btn-info" onclick="ed2.confirm().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="ed2.confirm(`테스트 confirm\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed2.confirm(`테스트 confirm ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
-    
-                    <button type="button" class="btn btn-info" 
-                        onclick="
-                            ed2.confirm(`테스트 confirm X`).then((r)=>{console.log('result X',r)})
-                            ed2.confirm(`테스트 confirm Y`).then((r)=>{console.log('result Y',r)})
-                            ed2.confirm(`테스트 confirm ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                        "
-                        >다중</button>
+        </div>
+        <hr>
+        <div>
+            <h2>with header</h2>
+            <div class="d-flex flex-wrap align-items-start gap-1">
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        edialog2.alert([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.alert(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.alert().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.alert(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog2.alert(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog2.alert().then((r)=>{console.log('result Y',r)})
+                                edialog2.alert(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2>prompt([message],[defaultValue]);</h2>
-                <div>
-                    <button type="button" class="btn btn-info" onclick="ed2.prompt().then((r)=>{console.log('result',r)})">빈 메세지</button>
-                    <button type="button" class="btn btn-info" onclick="ed2.prompt(`테스트 prompt\n     ${Date.now()}`).then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed2.prompt(`테스트 prompt `,'기본입력값').then((r)=>{console.log('result',r)})">테스트</button>
-                    <button type="button" class="btn btn-info" onclick="ed2.prompt(`테스트 prompt ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">긴문자열</button>
-                    <button type="button" class="btn btn-info" 
-                        onclick="
-                            ed2.prompt(`테스트 prompt X`).then((r)=>{console.log('result X',r)})
-                            ed2.prompt(`테스트 prompt Y`).then((r)=>{console.log('result Y',r)})
-                            ed2.prompt(`테스트 prompt ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ`).then((r)=>{console.log('result Z',r)})
-                        "
-                        >다중</button>
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        Boolean returnValue = edialog2.confirm([message]);
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.confirm(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.confirm().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.confirm(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog2.confirm(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog2.confirm().then((r)=>{console.log('result Y',r)})
+                                edialog2.confirm(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        String returnValue = edialog2.prompt([message],[defaultValue] );
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.prompt(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.prompt().then((r)=>{console.log('result',r)})">No Message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="edialog2.prompt(`테스트 ${Date.now()}`.repeat(100)).then((r)=>{console.log('result',r)})">Long message</button>
+                        <button type="button" class="btn btn-info m-1" onclick="
+                                edialog2.prompt(`테스트 X`).then((r)=>{console.log('result X',r)})
+                                edialog2.prompt().then((r)=>{console.log('result Y',r)})
+                                edialog2.prompt(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
+                            ">Multi</button>
+                    </div>
                 </div>
             </div>
         </div>
