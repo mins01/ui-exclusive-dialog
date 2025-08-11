@@ -60,12 +60,14 @@ class ExclusiveDialog{
             input.value = defaultValue
         }
 
-        const firstInputOrButton = dialog.querySelector('input, select, textarea, button');
+        window.document.body.classList.add('exclusive-dialog-open');
+        dialog.showModal();
+
+        const firstInputOrButton = dialog.querySelector('input:enabled:not([type=hidden]), select:enabled, textarea:enabled, button:enabled');
         if(firstInputOrButton){
             firstInputOrButton.focus()
         }
-        window.document.body.classList.add('exclusive-dialog-open');
-        dialog.showModal();
+        
     }
     addEventListenerForDialog(dialog){
         dialog.closedBy="none"; // 크롬대응
