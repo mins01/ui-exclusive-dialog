@@ -38,3 +38,12 @@
     white-space: break-spaces;
     word-break: break-all;
 }
+
+
+
+ /* 모바일 */
+@media (max-width: 767px) {
+    .reverse-buttons-for-mobile .exclusive-dialog-buttons{
+        flex-direction: row-reverse; /* 버튼 순서 뒤집기 */
+    }
+}

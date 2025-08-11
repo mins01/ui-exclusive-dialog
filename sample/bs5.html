@@ -79,7 +79,7 @@
                 </div>
                 <div class="card" style="width: 300px;">
                     <div class="card-header">
-                        Boolean returnValue = edialog.confirm([message]);
+                        Boolean returnValue = confirm([message]);
                     </div>
                     <div class="card-body d-flex flex-wrap">
                         <button type="button" class="btn btn-info m-1" onclick="{const r = confirm(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="card" style="width: 300px;">
                     <div class="card-header">
-                        String returnValue = edialog.prompt([message],[defaultValue] );
+                        String returnValue = prompt([message],[defaultValue] );
                     </div>
                     <div class="card-body d-flex flex-wrap">
                         <button type="button" class="btn btn-info m-1" onclick="{const r = prompt(`테스트 ${Date.now()}`); console.log('result',r)}">Message</button>
@@ -164,7 +164,9 @@
         </div>
         <hr>
         <div>
-            <h2>with header</h2>
+            <h2>with header
+                <div class="form-text">with .reverse-buttons-for-mobile</div>
+            </h2>
             <div class="d-flex flex-wrap align-items-start gap-1">
                 <div class="card" style="width: 300px;">
                     <div class="card-header">
@@ -223,7 +225,7 @@
                 <div class="card shadow ">
                     <!-- <div class="card-header"><i class="bi bi-info-square"></i> Alert</div> -->
                     <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
-                    <div class="card-body d-flex gap-3">
+                    <div class="card-body d-flex gap-3 exclusive-dialog-buttons">
                             <button type="submit" class="btn btn-primary flex-fill" >확인</button>
                     </div>
                 </div>
@@ -235,7 +237,7 @@
                 <div class="card shadow ">
                     <!-- <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div> -->
                     <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
-                    <div class="card-body d-flex gap-3">
+                    <div class="card-body d-flex gap-3 exclusive-dialog-buttons">
                         <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,true)">확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,false)">취소</button>
                     </div>
@@ -250,7 +252,7 @@
                     <div class="card-body d-flex flex-column gap-3 pb-0">
                         <input class="dialog-input form-control" type="text" name="input">
                     </div>
-                    <div class="card-body d-flex gap-3">
+                    <div class="card-body d-flex gap-3 exclusive-dialog-buttons">
                         <button type="submit" class="btn btn-success flex-fill" >확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,null)">취소</button>
                     </div>
@@ -260,31 +262,31 @@
     </div>
 
     <div class="exclusive-dialog-container exclusive-dialog-container-bs5 sample-2">
-        <dialog class="dialog-alert" data-dialog-id="alert">
+        <dialog class="dialog-alert reverse-buttons-for-mobile" data-dialog-id="alert">
             <form action="" method="dialog" >
                 <div class="card shadow ">
                     <div class="card-header"><i class="bi bi-info-square"></i> Alert</div>
                     <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
-                    <div class="card-body d-flex gap-3">
+                    <div class="card-body d-flex gap-3 exclusive-dialog-buttons">
                             <button type="submit" class="btn btn-primary flex-fill" >확인</button>
                     </div>
                 </div>
             </form>
         </dialog>
 
-        <dialog class="dialog-confirm" data-dialog-id="confirm">
+        <dialog class="dialog-confirm reverse-buttons-for-mobile" data-dialog-id="confirm">
             <form action="" method="dialog">
                 <div class="card shadow ">
                     <div class="card-header"><i class="bi bi-question-square"></i> Confirm</div>
                     <div class="card-body overflow-y-auto pb-0 dialog-message"></div>
-                    <div class="card-body d-flex gap-3">
+                    <div class="card-body d-flex gap-3 exclusive-dialog-buttons">
                         <button type="submit" class="btn btn-success flex-fill" onclick="ExclusiveDialog.close(this,true)">확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,false)">취소</button>
                     </div>
                 </div>
             </form>
         </dialog>
-        <dialog class="dialog-prompt" data-dialog-id="prompt">
+        <dialog class="dialog-prompt reverse-buttons-for-mobile" data-dialog-id="prompt">
             <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <div class="card shadow ">
                     <div class="card-header"><i class="bi bi-chat-right-text"></i> Prompt</div>
@@ -292,7 +294,7 @@
                     <div class="card-body d-flex flex-column gap-3 pb-0">
                         <input class="dialog-input form-control" type="text" name="input">
                     </div>
-                    <div class="card-body d-flex gap-3">
+                    <div class="card-body d-flex gap-3 exclusive-dialog-buttons">
                         <button type="submit" class="btn btn-success flex-fill" >확인</button>
                         <button type="button" class="btn btn-danger flex-fill" onclick="ExclusiveDialog.close(this,null)">취소</button>
                     </div>
