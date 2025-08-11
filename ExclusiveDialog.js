@@ -63,10 +63,12 @@ class ExclusiveDialog{
         window.document.body.classList.add('exclusive-dialog-open');
         dialog.showModal();
 
-        const firstInputOrButton = dialog.querySelector('input:enabled:not([type=hidden]), select:enabled, textarea:enabled, button:enabled');
-        if(firstInputOrButton){
-            firstInputOrButton.focus()
-        }
+        requestAnimationFrame(()=>{
+            const firstInputOrButton = dialog.querySelector('input:enabled:not([type=hidden]), select:enabled, textarea:enabled, button:enabled');
+            if(firstInputOrButton){
+                firstInputOrButton.focus()
+            }
+        })
         
     }
     addEventListenerForDialog(dialog){
