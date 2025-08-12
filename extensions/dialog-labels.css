@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+:root{
+  --dialog-label-confirm:'OK'; 
+  --dialog-label-cancel:'Cancel';
+}
+
+/* 기본값 (영어) */
+.dialog-label-confirm:lang(en) {  --dialog-label-confirm: 'OK';   }
+.dialog-label-cancel:lang(en) {  --dialog-label-cancel: 'Cancel'; }
+
+
+/* 한국어 */
+.dialog-label-confirm:lang(ko) {  --dialog-label-confirm: '확인';   }
+.dialog-label-cancel:lang(ko) {  --dialog-label-cancel: '취소'; }
+
+
+/* 일본어 */
+.dialog-label-confirm:lang(ja) {  --dialog-label-confirm: 'OK';   }
+.dialog-label-cancel:lang(ja) {  --dialog-label-cancel: 'キャンセル'; }
+
+
+/* 중국어(간체) */
+.dialog-label-confirm:lang(zh-CN) {  --dialog-label-confirm: '确定';   }
+.dialog-label-cancel:lang(zh-CN) {  --dialog-label-cancel: '取消'; }
+
+
+/* 중국어(번체) */
+.dialog-label-confirm:lang(zh-TW) {  --dialog-label-confirm: '確定';   }
+.dialog-label-cancel:lang(zh-TW) {  --dialog-label-cancel: '取消'; }
+
+
+/* 프랑스어 */
+.dialog-label-confirm:lang(fr) {  --dialog-label-confirm: 'OK';   }
+.dialog-label-cancel:lang(fr) {  --dialog-label-cancel: 'Annuler'; }
+
+
+/* 독일어 */
+.dialog-label-confirm:lang(de) {  --dialog-label-confirm: 'OK';   }
+.dialog-label-cancel:lang(de) {  --dialog-label-cancel: 'Abbrechen'; }
+
+
+/* 스페인어 */
+.dialog-label-confirm:lang(es) {  --dialog-label-confirm: 'Aceptar';   }
+.dialog-label-cancel:lang(es) {  --dialog-label-cancel: 'Cancelar'; }
+
+
+/* 포르투갈어(브라질) */
+.dialog-label-confirm:lang(pt-BR) {  --dialog-label-confirm: 'OK';   }
+.dialog-label-cancel:lang(pt-BR) {  --dialog-label-cancel: 'Cancelar'; }
+
+
+/* 이탈리아어 */
+.dialog-label-confirm:lang(it) {  --dialog-label-confirm: 'OK';   }
+.dialog-label-cancel:lang(it) {  --dialog-label-cancel: 'Annulla'; }
+
+
+/* 러시아어 */
+.dialog-label-confirm:lang(ru) {  --dialog-label-confirm: 'ОК';   }
+.dialog-label-cancel:lang(ru) {  --dialog-label-cancel: 'Отмена'; }
+
+
+/* 아랍어 */
+.dialog-label-confirm:lang(ar) {  --dialog-label-confirm: 'موافق';   }
+.dialog-label-cancel:lang(ar) {  --dialog-label-cancel: 'إلغاء'; }
+
+
+
+/* 라벨 출력 */
+.dialog-label-confirm::before {  content:var(--dialog-label-confirm); }
+.dialog-label-cancel::before {  content:var(--dialog-label-cancel); }
+
