@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+:root{
+  --exclusive-dialog-label-confirm:'OK'; 
+  --exclusive-dialog-label-cancel:'Cancel';    
+}
+
+/* 기본값 (영어) */
+.exclusive-dialog-label-confirm:lang(en) {  --exclusive-dialog-label-confirm: 'OK';   }
+.exclusive-dialog-label-cancel:lang(en) {  --exclusive-dialog-label-cancel: 'Cancel'; }
+
+
+/* 한국어 */
+.exclusive-dialog-label-confirm:lang(ko) {  --exclusive-dialog-label-confirm: '확인';   }
+.exclusive-dialog-label-cancel:lang(ko) {  --exclusive-dialog-label-cancel: '취소'; }
+
+
+/* 일본어 */
+.exclusive-dialog-label-confirm:lang(ja) {  --exclusive-dialog-label-confirm: 'OK';   }
+.exclusive-dialog-label-cancel:lang(ja) {  --exclusive-dialog-label-cancel: 'キャンセル'; }
+
+
+/* 중국어(간체) */
+.exclusive-dialog-label-confirm:lang(zh-CN) {  --exclusive-dialog-label-confirm: '确定';   }
+.exclusive-dialog-label-cancel:lang(zh-CN) {  --exclusive-dialog-label-cancel: '取消'; }
+
+
+/* 중국어(번체) */
+.exclusive-dialog-label-confirm:lang(zh-TW) {  --exclusive-dialog-label-confirm: '確定';   }
+.exclusive-dialog-label-cancel:lang(zh-TW) {  --exclusive-dialog-label-cancel: '取消'; }
+
+
+/* 프랑스어 */
+.exclusive-dialog-label-confirm:lang(fr) {  --exclusive-dialog-label-confirm: 'OK';   }
+.exclusive-dialog-label-cancel:lang(fr) {  --exclusive-dialog-label-cancel: 'Annuler'; }
+
+
+/* 독일어 */
+.exclusive-dialog-label-confirm:lang(de) {  --exclusive-dialog-label-confirm: 'OK';   }
+.exclusive-dialog-label-cancel:lang(de) {  --exclusive-dialog-label-cancel: 'Abbrechen'; }
+
+
+/* 스페인어 */
+.exclusive-dialog-label-confirm:lang(es) {  --exclusive-dialog-label-confirm: 'Aceptar';   }
+.exclusive-dialog-label-cancel:lang(es) {  --exclusive-dialog-label-cancel: 'Cancelar'; }
+
+
+/* 포르투갈어(브라질) */
+.exclusive-dialog-label-confirm:lang(pt-BR) {  --exclusive-dialog-label-confirm: 'OK';   }
+.exclusive-dialog-label-cancel:lang(pt-BR) {  --exclusive-dialog-label-cancel: 'Cancelar'; }
+
+
+/* 이탈리아어 */
+.exclusive-dialog-label-confirm:lang(it) {  --exclusive-dialog-label-confirm: 'OK';   }
+.exclusive-dialog-label-cancel:lang(it) {  --exclusive-dialog-label-cancel: 'Annulla'; }
+
+
+/* 러시아어 */
+.exclusive-dialog-label-confirm:lang(ru) {  --exclusive-dialog-label-confirm: 'ОК';   }
+.exclusive-dialog-label-cancel:lang(ru) {  --exclusive-dialog-label-cancel: 'Отмена'; }
+
+
+/* 아랍어 */
+.exclusive-dialog-label-confirm:lang(ar) {  --exclusive-dialog-label-confirm: 'موافق';   }
+.exclusive-dialog-label-cancel:lang(ar) {  --exclusive-dialog-label-cancel: 'إلغاء'; }
+
+
+
+/* 라벨 출력 */
+.exclusive-dialog-label-confirm::before {  content:var(--exclusive-dialog-label-confirm); }
+.exclusive-dialog-label-cancel::before {  content:var(--exclusive-dialog-label-cancel); }
+
