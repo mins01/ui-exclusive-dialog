@@ -130,6 +130,8 @@
                                 edialog.alert().then((r)=>{console.log('result Y',r)})
                                 edialog.alert(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
                             ">Multi</button>
+                        <button type="button" class="btn btn-info m-1" onclick="var tm = setTimeout(() => { edialog.alert.close('auto alert.close') }, 2000); edialog.alert(`2초후 자동으로 닫힙니다.`).then((r)=>{console.log('result',r);clearTimeout(tm)}); ">Auto alert.close</button>
+                        <button type="button" class="btn btn-info m-1" onclick="var tm = setTimeout(() => { edialog.closeAll('auto closeAll') }, 2000); edialog.alert(`2초후 자동으로 닫힙니다.`).then((r)=>{console.log('result',r);clearTimeout(tm)}); ">Auto closeAll</button>
                     </div>
                 </div>
                 <div class="card" style="width: 300px;">
@@ -145,6 +147,8 @@
                                 edialog.confirm().then((r)=>{console.log('result Y',r)})
                                 edialog.confirm(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
                             ">Multi</button>
+                        <button type="button" class="btn btn-info m-1" onclick="var tm = setTimeout(() => { edialog.confirm.close('auto confirm.close') }, 2000); edialog.confirm(`2초후 자동으로 닫힙니다.`).then((r)=>{console.log('result',r);clearTimeout(tm)}); ">Auto confirm.close</button>
+                        <button type="button" class="btn btn-info m-1" onclick="var tm = setTimeout(() => { edialog.closeAll('auto closeAll') }, 2000); edialog.confirm(`2초후 자동으로 닫힙니다.`).then((r)=>{console.log('result',r);clearTimeout(tm)}); ">Auto closeAll</button>
                     </div>
                 </div>
                 <div class="card" style="width: 300px;">
@@ -160,6 +164,8 @@
                                 edialog.prompt().then((r)=>{console.log('result Y',r)})
                                 edialog.prompt(`테스트 Z`.repeat(1000)).then((r)=>{console.log('result Z',r)})
                             ">Multi</button>
+                        <button type="button" class="btn btn-info m-1" onclick="var tm = setTimeout(() => { edialog.prompt.close('auto prompt.close') }, 2000); edialog.prompt(`2초후 자동으로 닫힙니다.`).then((r)=>{console.log('result',r);clearTimeout(tm)})">Auto prompt.close</button>
+                        <button type="button" class="btn btn-info m-1" onclick="var tm = setTimeout(() => { edialog.closeAll('auto closeAll') }, 2000); edialog.prompt(`2초후 자동으로 닫힙니다.`).then((r)=>{console.log('result',r);clearTimeout(tm)})">Auto closeAll</button>
                     </div>
                 </div>
             </div>
@@ -289,8 +295,9 @@
                 <button type="submit"  onclick="ExclusiveDialog.close(this,true)" >true</button>
                 <button type="submit"  onclick="ExclusiveDialog.close(this,false)" >false</button>
                 <button type="button"  >type="button" 아무 동작 없음</button>
-                <button type="button"  onclick="edialog.closeOpenDialogs()" >현재 보이는 dialog를 닫는다.</button>
-                <button type="button"  onclick="edialog.clearAndClose();" >큐를 clear하고 현재 보이는 dialog를 닫는다.</button>
+                <button type="button"  onclick="edialog.closeAll()" >현재 보이는 dialog를 닫는다.</button>
+                <button type="button"  onclick="edialog.clearAndCloseAll();" >큐를 clear하고 현재 보이는 dialog를 닫는다.</button>
+                <button type="button"  onclick="edialog.testReturnValue.close();" >edialog.testReturnValue.close();</button>
             </form>
         </dialog>
 

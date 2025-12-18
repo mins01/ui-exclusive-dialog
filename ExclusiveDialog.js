@@ -39,11 +39,13 @@ class ExclusiveDialog{
     
 
     createDialogCaller(dialog){
-        return (message='',defaultValue='')=>{
+        const dialogCaller = (message='',defaultValue='')=>{
             const promise = new Promise((resolve,reject)=>{ this.addQueue(()=>{this.#showModal(resolve,reject,dialog,message,defaultValue)}) })
             this.runQueue();
             return promise;
         }
+        dialogCaller.close = (val)=>{ this.close(dialog,val) }
+        return dialogCaller;
     }
     
     #showModal(resolve,reject,dialog,message='',defaultValue=''){
@@ -108,6 +110,7 @@ class ExclusiveDialog{
 
     // 이걸 사용안하면 value는 문자열로 처리된다.
     static close(el,val){
+        if(!el){return;}
         const dialog = el.closest('dialog');
         if(!dialog){return}
         
@@ -119,23 +122,28 @@ class ExclusiveDialog{
     
     // 내부 선언된 dialog 기준으로 찾는 것 외엔 static 쪽과 차이가 없다.
     close(el,val){
-        if(el===undefined){}
-        if(typeof el === 'string' && this.dialogs[el]){
-            el = this.dialogs[el];
-        }
+        if(typeof el === 'string' && this.dialogs[el]){ el = this.dialogs[el]; }
         this.constructor.close(el,val)
     }
 
-    // 열려있는 dialog를 닫는다.
-    closeOpenDialogs(){
+    // 열려있는 모든 dialog를 닫는다.
+    closeAll(val){
         Object.entries(this.dialogs).forEach(([key, dialog]) => {
-            if(dialog.open) this.close(dialog); // 열려있으면 닫는다.
+            if(dialog.open) this.close(dialog,val); // 열려있으면 닫는다.
         });
+    }
+    // @deprecated
+    closeOpenDialogs(){
+        this.closeAll();
     }
 
     // 예약된 dialog도 포함해서 닫는다. (여러 호출 하였을 때를 위한 처리.)
-    clearAndClose(){
+    clearAndCloseAll(){
         this.clearQueue();
-        this.closeOpenDialogs()
+        this.closeAll()
+    }
+    // @deprecated
+    clearAndClose(){
+        this.clearAndCloseAll();
     }
 }
