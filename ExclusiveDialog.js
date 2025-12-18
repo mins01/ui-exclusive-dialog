@@ -103,6 +103,7 @@ class ExclusiveDialog{
         return q();
     }
 
+    // 이걸 사용안하면 value는 문자열로 처리된다.
     static close(el,val){
         const dialog = el.closest('dialog');
         if(!dialog){return}
@@ -111,5 +112,12 @@ class ExclusiveDialog{
             dialog._returnValue = val; //rawReturnValue
         }
         dialog.close(val);
+    }
+    // 내부 선언된 것 기준으로 찾는 것 외엔 static 쪽과 차이가 없다.
+    close(el,val){
+        if(typeof el === 'string' && this.dialogs[el]){
+            el = this.dialogs[el];
+        }
+        this.constructor.close(el,val)
     }
 }

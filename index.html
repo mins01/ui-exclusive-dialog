@@ -52,7 +52,7 @@
             <li class="list-group-item">dialog 태그를 사용하여 modal(뒷 부분을 접근할 수 없는 상태)을 구성한다.</li>
             <li class="list-group-item">alert, confirm, prompt 를 에뮬레이션 하는 것이 기본 목표</li>
             <li class="list-group-item">promise 기반 콜백처리.</li>
-            <li class="list-group-item">ExclusiveDialog.close(node,returnValue) 로 처리하면 변수 타입을 유지한다.</li>
+            <li class="list-group-item">ExclusiveDialog.close(node,returnValue) or edialog.close(node,returnValue) 로 처리하면 변수 타입을 유지한다.</li>
         </ul>
         <ul class="list-group my-1">
             <li class="list-group-item">github : <a href="https://github.com/mins01/ui-exclusive-dialog">mins01/ui-exclusive-dialog</a></li>
@@ -220,13 +220,26 @@
                             ">Multi</button>
                     </div>
                 </div>
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        기타
+                        <div class="form-text">
+                            기타
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.confirmOnlyValue(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">only value(문자열로만 처리됨)</button>
+                    </div>
+                </div>
+                                        
+
             </div>
         </div>
     </div>
     
     <div class="exclusive-dialog-modal-container">
         <dialog class="dialog-alert" data-dialog-id="alert">
-            <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this);return false;" >
+            <form action="" method="dialog" onsubmit="edialog.close(this);return false;" >
                 <h1>alert</h1>
                 <div class="dialog-message"></div>
                 <button type="submit" >확인</button>
@@ -241,6 +254,15 @@
                 <button type="button" value="false" onclick="ExclusiveDialog.close(this,false)">취소</button>
             </form>
         </dialog>
+        <dialog class="dialog-confirm" data-dialog-id="confirmOnlyValue">
+            <form action="" method="dialog">
+                <h1>confirmOnlyValue</h1>
+                <div class="dialog-message"></div>
+                <button type="submit" value="true">확인</button>
+                <button value="false">취소</button>
+            </form>
+        </dialog>
+
         <dialog class="dialog-prompt" data-dialog-id="prompt">
             <form action="" method="dialog" onsubmit="ExclusiveDialog.close(this,this.input.value);return false;">
                 <h1>prompt</h1>
