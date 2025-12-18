@@ -102,6 +102,9 @@ class ExclusiveDialog{
         const q = this.queue.shift();
         return q();
     }
+    clearQueue() {
+        this.queue.length = 0;
+    }
 
     // 이걸 사용안하면 value는 문자열로 처리된다.
     static close(el,val){
@@ -113,11 +116,26 @@ class ExclusiveDialog{
         }
         dialog.close(val);
     }
-    // 내부 선언된 것 기준으로 찾는 것 외엔 static 쪽과 차이가 없다.
+    
+    // 내부 선언된 dialog 기준으로 찾는 것 외엔 static 쪽과 차이가 없다.
     close(el,val){
+        if(el===undefined){}
         if(typeof el === 'string' && this.dialogs[el]){
             el = this.dialogs[el];
         }
         this.constructor.close(el,val)
+    }
+
+    // 열려있는 dialog를 닫는다.
+    closeOpenDialogs(){
+        Object.entries(this.dialogs).forEach(([key, dialog]) => {
+            if(dialog.open) this.close(dialog); // 열려있으면 닫는다.
+        });
+    }
+
+    // 예약된 dialog도 포함해서 닫는다. (여러 호출 하였을 때를 위한 처리.)
+    clearAndClose(){
+        this.clearQueue();
+        this.closeOpenDialogs()
     }
 }
