@@ -1,12 +1,12 @@
 @charset "utf-8";
-body.exclusive-dialog-open{
+html.exclusive-dialog-open{
   overflow: hidden;
 }
 
-body.exclusive-dialog-open dialog:{
+.exclusive-dialog-open dialog:{
   
 }
 
-body.exclusive-dialog-open dialog::backdrop{
+.exclusive-dialog-open dialog::backdrop{
   
 }

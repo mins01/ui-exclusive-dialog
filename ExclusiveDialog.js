@@ -62,7 +62,7 @@ class ExclusiveDialog{
             input.value = defaultValue
         }
 
-        window.document.body.classList.add('exclusive-dialog-open');
+        window.document.querySelector('html').classList.add('exclusive-dialog-open');
         dialog.showModal();
 
         requestAnimationFrame(()=>{
@@ -86,7 +86,7 @@ class ExclusiveDialog{
                     this._resolve(target.returnValue);
                 }
             }
-            window.document.body.classList.remove('exclusive-dialog-open');
+            window.document.querySelector('html').classList.remove('exclusive-dialog-open');
             this.runQueue(true)
         })
     }
