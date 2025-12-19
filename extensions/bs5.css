@@ -39,6 +39,14 @@
     word-break: break-all;
 }
 
+/* 일반 포커스도 강조되게 */
+.exclusive-dialog-container-bs5 .btn:focus {
+    color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);
+    border-color: var(--bs-btn-hover-border-color);
+    outline: 0;
+    box-shadow: var(--bs-btn-focus-box-shadow);
+}
 
 
  /* 모바일 */
