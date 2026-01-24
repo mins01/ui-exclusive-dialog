@@ -45,7 +45,7 @@
     </script>    
 </head>
 <body>
-    <div class="container py-1">
+    <div class="container py-3">
         <h1>UI exclusiveDialog</h1>
         <ul class="list-group my-1">
             <li class="list-group-item">한번에 여러 호출을 해도 한번에 하나의 dialog만 뜸</li>
@@ -53,6 +53,11 @@
             <li class="list-group-item">alert, confirm, prompt 를 에뮬레이션 하는 것이 기본 목표</li>
             <li class="list-group-item">promise 기반 콜백처리.</li>
             <li class="list-group-item">ExclusiveDialog.close(node,returnValue) or edialog.close(node,returnValue) 로 처리하면 변수 타입을 유지한다.</li>
+            <li class="list-group-item">edialog.alert.close(returnValue) 로 지정한 alert 이나 confirm 이나 promport 를 닫을 수 있다.</li>
+            <li class="list-group-item">edialog.closeAll(returnValue) 로 edialog 속에 정의된 모든 exclusiveDialog 를 닫을 수 있다.</li>
+
+            
+
         </ul>
         <ul class="list-group my-1">
             <li class="list-group-item">github : <a href="https://github.com/mins01/ui-exclusive-dialog">mins01/ui-exclusive-dialog</a></li>
@@ -240,6 +245,35 @@
                                         
 
             </div>
+        </div>
+        <hr>
+        <div>
+            <h2>Scenario</h2>
+            <div class="d-flex flex-wrap align-items-start gap-1">
+                <div class="card" style="width: 300px;">
+                    <div class="card-header">
+                        시나리오 테스트
+                    </div>
+                    <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="testScenario1()">비동기 후속 동작 테스트 시나리오.(후속으로 무조건 confirm이 열린다)</button>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function testScenario1(){
+                    edialog.alert(`3초후 자동으로 닫힘`);
+                    const p3 = new Promise((resolve) => {
+                        setTimeout(() => {
+                        edialog.closeAll(); // 열린 모든 dialog를 닫고
+                        edialog.confirm('3초 지남!'); // xx confirm 창만 연다.
+                        resolve("3초 지남!");
+                        }, 3000);
+                    });
+                    p3.then((r)=>{
+                        console.log('edialog.closeAll()');
+                    })
+                }
+            </script>
         </div>
     </div>
     
