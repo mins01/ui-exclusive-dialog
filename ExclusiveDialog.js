@@ -45,6 +45,9 @@ class ExclusiveDialog{
             return promise;
         }
         dialogCaller.close = (val)=>{ this.close(dialog,val) }
+        dialog.addEventListener('close',(event)=>{
+            dialog.dispatchEvent(new Event('dialog:close',{ bubbles: true })); // dialog:close 이벤트 발생. 보통의 close 도 발생된다. 즉, 중복. 이 이벤트는 버블 된다.
+        })
         return dialogCaller;
     }
     
@@ -64,6 +67,7 @@ class ExclusiveDialog{
 
         window.document.querySelector('html').classList.add('exclusive-dialog-open');
         dialog.showModal();
+        dialog.dispatchEvent(new Event('dialog:open',{ bubbles: true })); // 오픈 이벤트 발생
 
         requestAnimationFrame(()=>{
             const firstInputOrButton = dialog.querySelector('input:enabled:not([type=hidden]), select:enabled, textarea:enabled, button:enabled');

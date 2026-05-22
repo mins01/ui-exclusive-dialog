@@ -41,6 +41,20 @@
     <script>
         window.addEventListener('load',(event)=>{
             window.edialog = new ExclusiveDialog(document.querySelector('.exclusive-dialog-modal-container'));
+
+            window.addEventListener('dialog:open',(event)=>{
+                const dialog = event.target;
+                console.log(event.type,dialog);
+            })
+            window.addEventListener('dialog:close',(event)=>{
+                const dialog = event.target;
+                console.log(event.type,dialog.returnValue,dialog);
+            })
+            window.addEventListener('close',(event)=>{ // 버블이 안되기 때문에 못 받는다.
+                const dialog = event.target;
+                console.log(event.type,dialog.returnValue,dialog);
+            })
+
         })
     </script>    
 </head>
@@ -239,6 +253,8 @@
                         </div>
                     </div>
                     <div class="card-body d-flex flex-wrap">
+                        <button type="button" class="btn btn-info m-1" onclick="edialog.buttonless(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">버튼 없음</button>
+
                         <button type="button" class="btn btn-info m-1" onclick="edialog.confirmOnlyValue(`테스트 ${Date.now()}`).then((r)=>{console.log('result',r)})">only value(문자열로만 처리됨)</button>
                     </div>
                 </div>
@@ -361,6 +377,23 @@
                 <button type="button"  onclick="ExclusiveDialog.close(this,null)">취소</button>
             </form>
         </dialog>
+        <dialog class="dialog-prompt" data-dialog-id="buttonless" id="buttonless">
+            <form action="" method="dialog">
+                <h1>buttonless</h1>
+                <div class="dialog-message">##</div>
+                <div class="dialog-static-message">버튼이 없음. 닫기는 수동으로 해야함. 예제는 3초 뒤 자동으로 닫힘</div>
+            </form>
+        </dialog>
+        <script>
+            document.querySelector('#buttonless').addEventListener('dialog:open',(event)=>{
+                const dialog = event.target;
+                console.log(event.type,dialog);
+
+                setTimeout(() => {
+                    dialog.close();
+                }, 3000);
+            })
+        </script>
 
         <!-- 이하 실패 테스트용 -->
         <dialog class="dialog-alert" data-dialog-id="alert">

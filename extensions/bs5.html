@@ -48,6 +48,20 @@
             window.edialog = new ExclusiveDialog(document.querySelector('.sample-1'));
             window.edialog2 = new ExclusiveDialog();
             window.edialog2.attachAll(document.querySelector('.sample-2'));
+
+
+            window.addEventListener('dialog:open',(event)=>{
+                const dialog = event.target;
+                console.log(event.type,dialog);
+            })
+            window.addEventListener('dialog:close',(event)=>{
+                const dialog = event.target;
+                console.log(event.type,dialog.returnValue,dialog);
+            })
+            window.addEventListener('close',(event)=>{ // 버블이 안되기 때문에 못 받는다.
+                const dialog = event.target;
+                console.log(event.type,dialog.returnValue,dialog);
+            })
         })
     </script>    
 </head>
